@@ -1,0 +1,166 @@
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 992px){
+
+header{
+    padding:15px 20px;
+}
+
+.search{
+    width:300px;
+}
+
+.hero{
+    padding:40px;
+}
+
+.hero-left h1{
+    font-size:40px;
+}
+
+.hero-left p{
+    font-size:18px;
+}
+
+.hero-right img{
+    width:280px;
+}
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+body{
+    padding-top:160px;
+}
+
+header{
+    flex-direction:column;
+    gap:15px;
+    padding:15px;
+}
+
+.search{
+    width:100%;
+}
+
+nav ul{
+    justify-content:center;
+}
+
+nav li{
+    margin:0 10px;
+}
+
+.categories{
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.category{
+    width:80px;
+}
+
+.hero{
+    flex-direction:column-reverse;
+    text-align:center;
+    padding:25px;
+}
+
+.hero-left,
+.hero-right{
+    width:100%;
+}
+
+.hero-left h1{
+    font-size:34px;
+}
+
+.hero-left p{
+    font-size:18px;
+}
+
+.hero-right img{
+    width:220px;
+    margin-bottom:20px;
+}
+
+.product-heading{
+    flex-direction:column;
+    gap:15px;
+}
+
+.product-container{
+    gap:15px;
+}
+
+.product-card{
+    min-width:180px;
+    height:360px;
+}
+
+.offer-container{
+    justify-content:center;
+}
+
+.offer-card{
+    width:100%;
+    max-width:260px;
+}
+
+.footer-container{
+    flex-direction:column;
+    gap:30px;
+}
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+.logo img{
+    width:70px;
+}
+
+.search input{
+    font-size:14px;
+}
+
+.hero-left h1{
+    font-size:28px;
+}
+
+.hero-left p{
+    font-size:16px;
+}
+
+.hero-left button{
+    padding:12px 25px;
+    font-size:16px;
+}
+
+.product-card{
+    min-width:160px;
+}
+
+.category img{
+    width:60px;
+    height:60px;
+}
+
+.category p{
+    font-size:13px;
+}
+
+}
