@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart clone</title>
+    <link rel="stylesheet" href="./Css/style.css">
+    <link rel="stylesheet" href="./Css/responsive.css">
+</head>
+<body>
+      
+    <header>
+        <div class="logo"><img src="./images/flipKartLogo.jpg" alt="logo"></div>
+        <div class="search">
+           <input type="text" id="searchInput" placeholder="Search for Products">
+
+          <span class="search-icon">🔍</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Become seller</a></li>
+                <!-- <li><a href="#">Products</a></li>
+                <li><a href="#">Categories</a></li> -->
+                <!-- <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li> -->
+            </ul>
+        </nav>
+       <div class="login" id="loginSection">
+
+    <button id="loginBtn"
+            onclick="window.location.href='login.html'">
+        Login
+    </button>
+
+</div>
+        <a href="cart.html" class="cart">
+    🛒 Cart (<span id="cartCount">0</span>)
+           </a>
+    </header>
+    <section class="categories">
+        
+        <div class="category">
+            <img src="./images/mobile1.jpg" alt="Mobile">
+        <p>Mobile</p>
+        </div>
+        <div class="category">
+            <img src="./images/fastion1.jpg" alt="Mobile">
+        <p>Fashion</p>
+        </div>
+        <div class="category">
+            <img src="./images/appliances1.jpg" alt="Mobile">
+        <p>Appliances</p>
+        </div>
+        <div class="category">
+            <img src="./images/furniture1.jpg" alt="Mobile">
+        <p>Furniture</p>
+        </div>
+        <div class="category">
+            <img src="./images/electronics1.jpg" alt="Mobile">
+        <p>Electronics</p>
+        </div>
+        <div class="category">
+            <img src="./images/toy1.jpg" alt="Mobile">
+        <p>Toy</p>
+        </div>
+        <div class="category">
+            <img src="./images/bike1.jpg" alt="Mobile">
+        <p>Bike</p>
+        </div>
+        
+    </section>
+    <section class="hero">
+        <div class="hero-left">
+            <h1>Big Billion Days</h1>
+            <p>Up to 80% OFF on Mobiles,Electronics and Fashion</p>
+            <button>Shop Now</button>
+
+        </div>
+        <div class="hero-right">
+            <img src="./images/mobile2.jpg" alt="Hero-image">
+
+        </div>
+    </section>
+    <section class="products">
+          <div class="product-heading">
+
+          <h2>Best Deals</h2>
+
+        <button>View All</button>
+
+    </div>
+
+        <div class="product-container">
+            <div class="product-card">
+                <img src="./images/mobile1.jpg" alt="Mobile">
+            <p class="price">₹11,9999</p>
+            <h3>IQOO Z10x</h3>
+            <p class="rating">⭐⭐⭐⭐⭐</p>
+            <p class="delivery">free delivery</p>
+            <button class="cart-btn">Add to card</button>
+            </div>
+             <div class="product-card">
+                <img src="./images/bike1.jpg" alt="Mobile">
+            <p class="price">₹15,000</p>
+            <h3>Scooty</h3>
+            <p class="rating">⭐⭐⭐⭐</p>
+            <p class="delivery">free delivery</p>
+            <button class="cart-btn">Add to card</button>
+            </div>
+             <div class="product-card">
+                <img src="./images/appliances1.jpg" alt="Mobile">
+            <p class="price">₹10,999</p>
+            <h3>Washing mission</h3>
+            <p class="rating">⭐⭐⭐⭐</p>
+            <p class="delivery">free delivery</p>
+            <button class="cart-btn">Add to card</button>
+            </div>
+             <div class="product-card">
+                <img src="./images/fastion1.jpg" alt="Mobile">
+            <p class="price">₹15,999</p>
+            <h3>The long leafe</h3>
+            <p class="rating">⭐⭐⭐⭐⭐</p>
+            <p class="delivery">free delivery</p>
+            <button class="cart-btn">Add to card</button>
+            </div>
+             <div class="product-card">
+                <img src="./images/toy1.jpg" alt="Mobile">
+            <p class="price">₹20,9999</p>
+            <h3>Kids Collections</h3>
+            <p class="rating">⭐⭐⭐⭐</p>
+            <p class="delivery">free delivery</p>
+            <button class="cart-btn">Add to card</button>
+            </div>
+             <div class="product-card">
+                <img src="./images/furniture1.jpg" alt="Mobile">
+            <p class="price"> ₹1,35,9999</p>
+            <h3>Sofa set</h3>
+            <p class="rating">⭐⭐⭐</p>
+            <p class="delivery">free delivery</p>
+            <button class="cart-btn">Add to card</button>
+            </div>
+             <div class="product-card">
+                <img src="./images/electronics1.jpg" alt="Mobile">
+            <p class="price">₹30,999</p>
+            <h3>Sony</h3>
+            <p class="rating">⭐⭐⭐⭐</p>
+            <p class="delivery">free delivery</p>
+            <button class="cart-btn">Add to card</button>
+            </div>
+        </div>
+    </section>
+    <section class="offers">
+        <h2>Trending Offers</h2>
+        <div class="offer-container">
+            <div class="offer-card">
+                <img src="images/mobile2.jpg" src="mobile">
+                <h3>iPhone 15</h3>
+                <p>Flat 25% OFF</p>
+            </div>
+            <div class="offer-card">
+                <img src="images/electronics3.jpg" src="mobile">
+                <h3>Head Phones</h3>
+                <p>Flat 45% OFF</p>
+            </div>
+            <div class="offer-card">
+                <img src="images/furniture4.jpg" src="mobile">
+                <h3>Home Furniture</h3>
+                <p>Flat 30% OFF</p>
+            </div>
+            <div class="offer-card">
+                <img src="images/appliances3.jpg" src="mobile">
+                <h3>Preethi Grinders</h3>
+                <p>Flat 55% OFF</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+
+    <div class="footer-container">
+
+        <div class="footer-column">
+            <div class="footer-column">
+              <h3>Flipkart</h3>
+              <p>Shop with confidence.</p>
+            </div>
+        </div>
+
+        <div class="footer-column">
+              <div class="footer-column">
+                  <h3>Company</h3>
+                   <a href="#">About</a>
+                   <a href="#">Careers</a>
+                   <a href="#">Contact</a>
+               </div>
+        </div>
+
+        <div class="footer-column">
+            <div class="footer-column">
+              <h3>Help</h3>
+              <a href="#">FAQ</a>
+              <a href="#">Shipping</a>
+              <a href="#">Returns</a>
+           </div>
+        </div>
+
+        <div class="footer-column">
+            <div class="footer-column">
+                <h3>Social</h3>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+             </div>
+        </div>
+
+    </div>
+
+</footer>
+    
+    <script src="./javascript/app.js"></script>
+</body>
+</html>

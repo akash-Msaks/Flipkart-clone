@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+
+    <link rel="stylesheet" href="./Css/card.css">
+</head>
+
+<body>
+
+<h1>Shopping Cart</h1>
+
+<div class="cart-container">
+
+    <div id="cartItems"></div>
+
+    <div class="price-details">
+
+        <h2>Price Details</h2>
+
+        <hr>
+
+        <p>
+            Price (<span id="totalItems">0</span> Items)
+            <span id="totalPrice">₹0</span>
+        </p>
+
+        <p>
+            Delivery
+            <span style="color:green;">FREE</span>
+        </p>
+
+        <hr>
+
+        <h3>
+            Total
+            <span id="grandTotal">₹0</span>
+        </h3>
+
+       <button class="place-order" onclick="window.location.href='checkout.html'">
+    PLACE ORDER
+</button>
+
+    </div>
+
+</div>
+
+<script src="javascript/cart.js"></script>
+
+</body>
+</html>

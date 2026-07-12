@@ -1,0 +1,300 @@
+/* ==========================================
+            GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================
+            GLOBAL
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f1f3f6;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+}
+
+/* ==========================================
+            LOGIN CONTAINER
+========================================== */
+
+.login-container{
+
+    width:900px;
+
+    height:550px;
+
+    background:white;
+
+    display:flex;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+/* ==========================================
+            LEFT PANEL
+========================================== */
+
+.login-left{
+
+    width:40%;
+
+    background:#2874f0;
+
+    color:white;
+
+    padding:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+}
+
+.login-left h1{
+
+    font-size:38px;
+
+    margin-bottom:20px;
+}
+
+.login-left p{
+
+    font-size:18px;
+
+    line-height:30px;
+
+    color:#f5f5f5;
+}
+
+.login-left img{
+
+    width:220px;
+
+    align-self:center;
+
+    margin-top:30px;
+}
+
+/* ==========================================
+            RIGHT PANEL
+========================================== */
+
+.login-right{
+
+    width:60%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+}
+
+/* ==========================================
+            FORM
+========================================== */
+
+form{
+
+    width:100%;
+}
+
+form h2{
+
+    margin-bottom:35px;
+
+    color:#212121;
+
+    text-align:center;
+}
+
+/* ==========================================
+            INPUT BOX
+========================================== */
+
+.input-box{
+
+    margin-bottom:22px;
+}
+
+.input-box label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:500;
+
+    color:#555;
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #ccc;
+
+    border-radius:6px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.input-box input:focus{
+
+    border-color:#2874f0;
+
+    box-shadow:0 0 5px rgba(40,116,240,.3);
+}
+
+/* ==========================================
+            OPTIONS
+========================================== */
+
+.options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+}
+
+.options a{
+
+    text-decoration:none;
+
+    color:#2874f0;
+
+    font-weight:500;
+}
+
+.options a:hover{
+
+    text-decoration:underline;
+}
+
+/* ==========================================
+            LOGIN BUTTON
+========================================== */
+
+.login-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    background:#fb641b;
+
+    color:white;
+
+    border:none;
+
+    border-radius:6px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.login-btn:hover{
+
+    background:#e85b12;
+}
+
+/* ==========================================
+            SIGNUP LINK
+========================================== */
+
+.signup-link{
+
+    text-align:center;
+
+    margin-top:30px;
+
+    font-size:15px;
+}
+
+.signup-link a{
+
+    text-decoration:none;
+
+    color:#2874f0;
+
+    font-weight:600;
+}
+
+.signup-link a:hover{
+
+    text-decoration:underline;
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+.login-container{
+
+    width:95%;
+
+    height:auto;
+
+    flex-direction:column;
+}
+
+.login-left{
+
+    width:100%;
+
+    text-align:center;
+
+    align-items:center;
+}
+
+.login-left img{
+
+    width:170px;
+}
+
+.login-right{
+
+    width:100%;
+}
+
+}

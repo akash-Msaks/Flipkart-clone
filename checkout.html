@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+
+    <link rel="stylesheet" href="./Css/checkout.css">
+</head>
+
+<body>
+
+<h1 class="checkout-title">Checkout</h1>
+
+<div class="checkout-container">
+
+    <!-- Address Section -->
+
+    <div class="address-section">
+
+        <h2>Delivery Address</h2>
+
+        <input type="text" placeholder="Full Name">
+
+        <input type="tel" placeholder="Phone Number">
+
+        <textarea placeholder="Complete Address"></textarea>
+
+        <input type="text" placeholder="City">
+
+        <input type="text" placeholder="State">
+
+        <input type="text" placeholder="Pincode">
+
+    </div>
+
+    <!-- Payment Section -->
+
+    <div class="payment-section">
+
+        <h2>Payment Method</h2>
+
+        <label>
+            <input type="radio" name="payment">
+            UPI
+        </label>
+
+        <label>
+            <input type="radio" name="payment">
+            Credit / Debit Card
+        </label>
+
+        <label>
+            <input type="radio" name="payment">
+            Net Banking
+        </label>
+
+        <label>
+            <input type="radio" name="payment">
+            Cash On Delivery
+        </label>
+
+        <hr>
+
+        <div class="price-summary">
+
+            <p>Total Items <span id="checkoutItems">0</span></p>
+
+            <p>Total Price <span id="checkoutPrice">₹0</span></p>
+
+        </div>
+
+        <button id="payNowBtn">
+            PAY NOW
+        </button>
+
+    </div>
+
+</div>
+
+<script src="./javascript/checkout.js"></script>
+
+</body>
+</html>
