@@ -1,84 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
 
-    <link rel="stylesheet" href="./Css/checkout.css">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+     <link
+    rel="icon"
+    type="image/png"
+    href="./icons/shopKart.png"
+>
+
+    <title>Checkout | Flipkart Clone</title>
+
+    <link
+        rel="stylesheet"
+        href="./Css/checkout.css"
+    >
+
 </head>
+
 
 <body>
 
-<h1 class="checkout-title">Checkout</h1>
 
-<div class="checkout-container">
+    <!-- ==========================================
+         CHECKOUT TITLE
+    =========================================== -->
 
-    <!-- Address Section -->
+    <h1 class="checkout-title">
+        Checkout
+    </h1>
 
-    <div class="address-section">
 
-        <h2>Delivery Address</h2>
+    <div class="checkout-container">
 
-        <input type="text" placeholder="Full Name">
 
-        <input type="tel" placeholder="Phone Number">
+        <!-- ======================================
+             DELIVERY ADDRESS
+        ======================================= -->
 
-        <textarea placeholder="Complete Address"></textarea>
+        <div class="address-section">
 
-        <input type="text" placeholder="City">
+            <h2>
+                Delivery Address
+            </h2>
 
-        <input type="text" placeholder="State">
 
-        <input type="text" placeholder="Pincode">
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Full Name"
+                required
+            >
 
-    </div>
 
-    <!-- Payment Section -->
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Phone Number"
+                required
+            >
 
-    <div class="payment-section">
 
-        <h2>Payment Method</h2>
+            <textarea
+                id="address"
+                placeholder="Complete Address"
+                required
+            ></textarea>
 
-        <label>
-            <input type="radio" name="payment">
-            UPI
-        </label>
 
-        <label>
-            <input type="radio" name="payment">
-            Credit / Debit Card
-        </label>
+            <input
+                type="text"
+                id="city"
+                placeholder="City"
+                required
+            >
 
-        <label>
-            <input type="radio" name="payment">
-            Net Banking
-        </label>
 
-        <label>
-            <input type="radio" name="payment">
-            Cash On Delivery
-        </label>
+            <input
+                type="text"
+                id="state"
+                placeholder="State"
+                required
+            >
 
-        <hr>
 
-        <div class="price-summary">
-
-            <p>Total Items <span id="checkoutItems">0</span></p>
-
-            <p>Total Price <span id="checkoutPrice">₹0</span></p>
+            <input
+                type="text"
+                id="pincode"
+                placeholder="Pincode"
+                required
+            >
 
         </div>
 
-        <button id="payNowBtn">
-            PAY NOW
-        </button>
+
+
+        <!-- ======================================
+             PAYMENT SECTION
+        ======================================= -->
+
+        <div class="payment-section">
+
+            <h2>
+                Payment Method
+            </h2>
+
+
+            <!-- UPI -->
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="payment"
+                    value="UPI"
+                >
+
+                UPI
+
+            </label>
+
+
+            <!-- CARD -->
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="payment"
+                    value="CARD"
+                >
+
+                Credit / Debit Card
+
+            </label>
+
+
+            <!-- NET BANKING -->
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="payment"
+                    value="NET_BANKING"
+                >
+
+                Net Banking
+
+            </label>
+
+
+            <!-- CASH ON DELIVERY -->
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="payment"
+                    value="COD"
+                >
+
+                Cash On Delivery
+
+            </label>
+
+
+            <hr>
+
+
+            <!-- ==================================
+                 PRICE SUMMARY
+            =================================== -->
+
+            <div class="price-summary">
+
+                <p>
+
+                    Total Items
+
+                    <span id="checkoutItems">
+                        0
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    Total Price
+
+                    <span id="checkoutPrice">
+                        ₹0
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <!-- ==================================
+                 PAY NOW
+            =================================== -->
+
+            <button
+                id="payNowBtn"
+                type="button"
+            >
+                PAY NOW
+            </button>
+
+        </div>
+
 
     </div>
 
-</div>
+
+    <!-- ==========================================
+         CHECKOUT JAVASCRIPT
+    =========================================== -->
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script src="./javascript/checkout.js"></script>
 
 </body>
+
 </html>

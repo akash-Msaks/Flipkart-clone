@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+     <link
+    rel="icon"
+    type="image/png"
+    href="./icons/shopKart.png"
+>
+    <title>
+        Delivery Partner Dashboard | Flipkart Clone
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="./Css/delivery.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="delivery-header">
+
+        <div>
+
+            <h1>
+                🚴 Delivery Dashboard
+            </h1>
+
+            <p>
+                Welcome,
+                <span id="deliveryPartnerName">
+                    Delivery Partner
+                </span>
+            </p>
+
+        </div>
+
+
+        <button id="logoutBtn">
+            Logout
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main class="delivery-main">
+
+
+        <!-- =====================================
+             PARTNER STATUS
+        ====================================== -->
+
+        <section class="partner-status-card">
+
+            <div>
+
+                <h2>
+                    My Status
+                </h2>
+
+                <p>
+                    Current availability
+                </p>
+
+            </div>
+
+
+            <span
+                id="partnerStatus"
+                class="partner-status"
+            >
+
+                AVAILABLE
+
+            </span>
+
+        </section>
+
+
+
+        <!-- =====================================
+             DASHBOARD STATS
+        ====================================== -->
+
+        <section class="delivery-stats">
+
+
+            <div class="delivery-stat-card">
+
+                <h3>
+                    📦 Assigned
+                </h3>
+
+                <h2 id="assignedOrders">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="delivery-stat-card">
+
+                <h3>
+                    🚴 Active
+                </h3>
+
+                <h2 id="activeOrders">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="delivery-stat-card">
+
+                <h3>
+                    ✅ Delivered
+                </h3>
+
+                <h2 id="deliveredOrders">
+                    0
+                </h2>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             ORDERS
+        ====================================== -->
+
+        <section class="delivery-orders-section">
+
+
+            <div class="delivery-page-header">
+
+                <h2>
+                    My Orders
+                </h2>
+
+            </div>
+
+
+            <div
+                id="deliveryOrdersContainer"
+                class="delivery-orders-container"
+            >
+
+                <p>
+                    Loading orders...
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script src="./javascript/delivery.js"></script>
+
+
+</body>
+
+</html>

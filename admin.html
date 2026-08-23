@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+     <link
+    rel="icon"
+    type="image/png"
+    href="./icons/shopKart.png"
+>
+
+    <title>
+        Admin Panel | Flipkart Clone
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="./Css/admin.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         ADMIN HEADER
+    ====================================== -->
+
+    <header class="admin-header">
+
+        <h1>
+            Flipkart Admin Panel 👑
+        </h1>
+
+
+        <div class="admin-user">
+
+            <span id="adminName">
+                Admin
+            </span>
+
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <div class="sidebar">
+
+        <h2>
+            Admin Menu
+        </h2>
+
+
+        <!-- DASHBOARD -->
+
+        <button
+            class="menu-btn active"
+            id="dashboardMenuBtn">
+
+            📊 Dashboard
+
+        </button>
+
+
+
+        <!-- PRODUCTS -->
+
+        <button
+            class="menu-btn"
+            id="productsMenuBtn">
+
+            📦 Products
+
+        </button>
+
+
+
+        <!-- USERS -->
+
+        <button
+            class="menu-btn"
+            id="usersMenuBtn">
+
+            👥 Users
+
+        </button>
+
+
+
+        <!-- ORDERS -->
+
+        <button
+            class="menu-btn"
+            id="ordersMenuBtn">
+
+            🛒 Orders
+
+        </button>
+
+
+
+        <!-- DELIVERY -->
+
+        <button
+            class="menu-btn"
+            id="deliveryMenuBtn">
+
+            🚴 Delivery Partners
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="admin-main">
+
+
+        <!-- =====================================
+             DASHBOARD SECTION
+        ====================================== -->
+
+        <section id="dashboardSection">
+
+
+            <div class="page-header">
+
+                <h2>
+                    Dashboard
+                </h2>
+
+            </div>
+
+
+
+            <div class="dashboard-cards">
+
+
+                <!-- TOTAL USERS -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        👥
+                    </div>
+
+
+                    <div>
+
+                        <p>
+                            Total Users
+                        </p>
+
+
+                        <h2 id="totalUsers">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL PRODUCTS -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        📦
+                    </div>
+
+
+                    <div>
+
+                        <p>
+                            Total Products
+                        </p>
+
+
+                        <h2 id="totalProducts">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL ORDERS -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        🛒
+                    </div>
+
+
+                    <div>
+
+                        <p>
+                            Total Orders
+                        </p>
+
+
+                        <h2 id="totalOrders">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL REVENUE -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        💰
+                    </div>
+
+
+                    <div>
+
+                        <p>
+                            Total Revenue
+                        </p>
+
+
+                        <h2 id="totalRevenue">
+                            ₹0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PRODUCTS SECTION
+        ====================================== -->
+
+        <section
+            id="productsSection"
+            style="display: none;"
+        >
+
+
+            <div class="page-header">
+
+                <h2>
+                    Manage Products
+                </h2>
+
+
+                <button id="addProductBtn">
+                    + Add Product
+                </button>
+
+            </div>
+
+
+
+            <div
+                id="productsContainer"
+                class="products-container"
+            >
+
+                <p>
+                    Loading products...
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             USERS SECTION
+        ====================================== -->
+
+        <section
+            id="usersSection"
+            style="display: none;"
+        >
+
+
+            <div class="page-header">
+
+                <h2>
+                    Manage Users
+                </h2>
+
+            </div>
+
+
+
+            <div class="users-table-container">
+
+
+                <table class="users-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+
+                            <th>
+                                Name
+                            </th>
+
+
+                            <th>
+                                Email
+                            </th>
+
+
+                            <th>
+                                Role
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+
+                    <tbody id="usersTableBody">
+
+                        <tr>
+
+                            <td colspan="4">
+
+                                Loading users...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             ORDERS SECTION
+        ====================================== -->
+
+        <section
+            id="ordersSection"
+            style="display: none;"
+        >
+
+
+            <div class="page-header">
+
+                <h2>
+                    Manage Orders
+                </h2>
+
+            </div>
+
+
+
+            <div
+                id="adminOrdersContainer"
+                class="admin-orders-container"
+            >
+
+                <p>
+                    Loading orders...
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             DELIVERY PARTNERS SECTION
+        ====================================== -->
+
+        <!-- =====================================
+     DELIVERY PARTNERS SECTION
+====================================== -->
+
+<section
+    id="deliverySection"
+    style="display: none;"
+>
+
+    <div class="page-header">
+
+        <h2>
+            Delivery Partners
+        </h2>
+
+        <button id="addDeliveryPartnerBtn">
+            + Add Delivery Partner
+        </button>
+
+    </div>
+
+
+    <div
+        id="deliveryPartnersContainer"
+        class="delivery-partners-container"
+    >
+
+        <p>
+            Loading delivery partners...
+        </p>
+
+    </div>
+
+</section>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         ADD / EDIT PRODUCT MODAL
+    ====================================== -->
+
+    <div
+        id="productModal"
+        class="modal"
+    >
+
+
+        <div class="modal-content">
+
+
+            <h2 id="modalTitle">
+                Add Product
+            </h2>
+
+
+
+            <!-- PRODUCT NAME -->
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="Product Name"
+            >
+
+
+
+            <!-- PRICE -->
+
+            <input
+                type="number"
+                id="productPrice"
+                placeholder="Price"
+            >
+
+
+
+            <!-- CATEGORY -->
+
+            <input
+                type="text"
+                id="productCategory"
+                placeholder="Category"
+            >
+
+
+
+            <!-- IMAGE -->
+
+            <input
+                type="text"
+                id="productImage"
+                placeholder="Image filename"
+            >
+
+
+
+            <!-- RATING -->
+
+            <input
+                type="number"
+                id="productRating"
+                placeholder="Rating"
+                min="1"
+                max="5"
+            >
+
+
+
+            <!-- DELIVERY -->
+
+            <input
+                type="text"
+                id="productDelivery"
+                placeholder="Delivery"
+            >
+
+
+
+            <!-- MODAL BUTTONS -->
+
+            <div class="modal-buttons">
+
+
+                <button id="saveProductBtn">
+
+                    Save Product
+
+                </button>
+
+
+                <button id="closeModalBtn">
+
+                    Cancel
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+<!-- =====================================
+     DELIVERY PARTNER MODAL
+====================================== -->
+
+<div
+    id="deliveryPartnerModal"
+    class="modal"
+>
+
+    <div class="modal-content">
+
+        <h2>
+            Add Delivery Partner
+        </h2>
+
+
+        <input
+            type="text"
+            id="deliveryPartnerName"
+            placeholder="Full Name"
+        >
+
+
+        <input
+            type="email"
+            id="deliveryPartnerEmail"
+            placeholder="Email"
+        >
+
+
+        <input
+            type="password"
+            id="deliveryPartnerPassword"
+            placeholder="Password"
+        >
+
+
+        <input
+            type="text"
+            id="deliveryPartnerPhone"
+            placeholder="Phone Number"
+        >
+
+
+        <input
+            type="text"
+            id="deliveryPartnerVehicleType"
+            placeholder="Vehicle Type (Bike / Scooty)"
+        >
+
+
+        <input
+            type="text"
+            id="deliveryPartnerVehicleNumber"
+            placeholder="Vehicle Number"
+        >
+
+
+        <div class="modal-buttons">
+
+            <button id="saveDeliveryPartnerBtn">
+                Create Partner
+            </button>
+
+
+            <button id="closeDeliveryPartnerBtn">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script src="./javascript/admin.js"></script>
+
+
+</body>
+
+</html>

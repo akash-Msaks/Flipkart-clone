@@ -1,66 +1,178 @@
 // ===============================
-// SHOW PASSWORD
-// ===============================
-
-const showPassword = document.getElementById("showPassword");
-const password = document.getElementById("password");
-
-showPassword.addEventListener("change", function () {
-
-    if (showPassword.checked) {
-
-        password.type = "text";
-
-    } else {
-
-        password.type = "password";
-
-    }
-
-});
-
-// ===============================
 // LOGIN
 // ===============================
 
-const loginForm = document.getElementById("loginForm");
+const loginForm =
+    document.getElementById("loginForm");
 
-loginForm.addEventListener("submit", function (e) {
 
-    e.preventDefault();
+loginForm.addEventListener(
+    "submit",
+    async function (e) {
 
-    const email = document.getElementById("email").value.trim();
+        e.preventDefault();
 
-    const password = document.getElementById("password").value.trim();
 
-    // Get all users from localStorage
+        // ===============================
+        // GET FORM VALUES
+        // ===============================
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
 
-    // Find matching user
 
-    const user = users.find(function (u) {
+        const password =
+            document
+                .getElementById("password")
+                .value
+                .trim();
 
-        return u.email === email && u.password === password;
 
-    });
+        // ===============================
+        // VALIDATION
+        // ===============================
 
-    if (user) {
+        if (!email || !password) {
 
-        // Save logged user
+            alert(
+                "Please enter email and password"
+            );
 
-        localStorage.setItem("loggedUser", JSON.stringify(user));
+            return;
 
-        alert("Login Successful ✅");
+        }
 
-        window.location.href = "index.html";
+
+        try {
+
+            // ===============================
+            // LOGIN API
+            // ===============================
+
+            const response =
+                await fetch(
+                    "http://localhost:5001/api/auth/login",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                email:
+                                    email,
+
+                                password:
+                                    password
+
+                            })
+
+                    }
+                );
+
+
+            // ===============================
+            // RESPONSE
+            // ===============================
+
+            const data =
+                await response.json();
+
+
+            // ===============================
+            // LOGIN SUCCESS
+            // ===============================
+
+            if (response.ok) {
+
+
+                // ===========================
+                // SAVE JWT TOKEN
+                // ===========================
+
+                localStorage.setItem(
+                    "token",
+                    data.token
+                );
+
+
+                // ===========================
+                // SAVE LOGGED USER
+                // ===========================
+
+                localStorage.setItem(
+                    "loggedUser",
+                    JSON.stringify(
+                        data.user
+                    )
+                );
+
+
+                alert(
+                    "Login Successful ✅"
+                );
+
+
+                // ===========================
+                // ROLE BASED REDIRECTION
+                // ===========================
+
+                if (
+                    data.user.role === "ADMIN"
+                ) {
+
+                    // ADMIN
+                    window.location.href =
+                        "admin.html";
+
+                } 
+                else if (data.user.role === "DELIVERY_PARTNER") {
+
+    window.location.href = "delivery.html";
+
+}
+                else {
+
+                    // CUSTOMER
+                    window.location.href =
+                        "index.html";
+
+                }
+
+
+            } else {
+
+                alert(
+                    data.message ||
+                    "Invalid email or password"
+                );
+
+            }
+
+
+        } catch (error) {
+
+            console.log(
+                "Login error:",
+                error
+            );
+
+
+            alert(
+                "Unable to connect to server ❌"
+            );
+
+        }
 
     }
-
-    else {
-
-        alert("Invalid Email or Password ❌");
-
-    }
-
-});
+);

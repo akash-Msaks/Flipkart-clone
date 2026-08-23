@@ -1,0 +1,705 @@
+/* ==========================================
+   ORDER DETAILS
+========================================== */
+
+:root {
+
+    --primary: #635bff;
+    --primary-dark: #5048d8;
+
+    --secondary: #12b886;
+    --secondary-dark: #0f9d73;
+
+    --accent: #ff6b6b;
+
+    --dark: #171827;
+    --text: #202132;
+    --text-light: #6b6d7c;
+
+    --background: #f7f7fb;
+    --white: #ffffff;
+
+    --border: #e8e8f0;
+
+    --shadow:
+        0 5px 20px rgba(28, 29, 49, 0.08);
+
+    --shadow-hover:
+        0 10px 25px rgba(28, 29, 49, 0.12);
+}
+
+
+/* ==========================================
+   GLOBAL
+========================================== */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.details-header {
+
+    background: var(--dark);
+
+    color: white;
+
+    padding: 20px 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    box-shadow:
+        0 3px 15px
+        rgba(23, 24, 39, 0.15);
+
+}
+
+
+.details-header h1 {
+
+    font-size: 28px;
+
+    font-weight: 600;
+
+}
+
+
+.details-header a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    padding: 9px 15px;
+
+    border-radius: 8px;
+
+    transition: 0.3s;
+
+}
+
+
+.details-header a:hover {
+
+    background: var(--primary);
+
+}
+
+
+/* ==========================================
+   MAIN
+========================================== */
+
+.details-container {
+
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+}
+
+
+/* ==========================================
+   ORDER CARD
+========================================== */
+
+.order-detail-card {
+
+    background: var(--white);
+
+    padding: 30px;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+}
+
+
+/* ==========================================
+   ORDER HEADER
+========================================== */
+
+.detail-order-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid var(--border);
+
+    gap: 20px;
+
+}
+
+
+.detail-order-header h2 {
+
+    font-size: 25px;
+
+    margin-bottom: 8px;
+
+    color: var(--dark);
+
+}
+
+
+.detail-order-header p {
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================
+   ORDER STATUS
+========================================== */
+
+.order-status {
+
+    background: #e6faf3;
+
+    color: var(--secondary-dark);
+
+    padding: 8px 16px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==========================================
+   PRODUCTS
+========================================== */
+
+.detail-products {
+
+    margin-top: 25px;
+
+}
+
+
+.detail-products > h2 {
+
+    margin-bottom: 15px;
+
+    color: var(--dark);
+
+    font-size: 22px;
+
+}
+
+
+/* ==========================================
+   PRODUCT
+========================================== */
+
+.detail-product {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 25px 0;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.detail-product:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.detail-product img {
+
+    width: 180px;
+
+    height: 180px;
+
+    object-fit: contain;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    flex-shrink: 0;
+
+}
+
+
+.detail-product-info {
+
+    min-width: 0;
+
+}
+
+
+.detail-product-info h2 {
+
+    margin-bottom: 15px;
+
+    color: var(--dark);
+
+    font-size: 22px;
+
+}
+
+
+.detail-product-info p {
+
+    margin: 8px 0;
+
+    font-size: 16px;
+
+    color: var(--text-light);
+
+}
+
+
+/* ==========================================
+   ORDER SUMMARY
+========================================== */
+
+.detail-price {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+.detail-price h2 {
+
+    margin-bottom: 15px;
+
+    color: var(--dark);
+
+    font-size: 21px;
+
+}
+
+
+.detail-price p {
+
+    font-size: 20px;
+
+    color: var(--text);
+
+}
+
+
+.detail-price strong {
+
+    margin-left: 10px;
+
+    color: var(--secondary-dark);
+
+}
+
+
+/* ==========================================
+   BACK BUTTON
+========================================== */
+
+.back-orders-btn {
+
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 12px 25px;
+
+    background: var(--primary);
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+
+}
+
+
+.back-orders-btn:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 15px
+        rgba(99, 91, 255, 0.20);
+
+}
+
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.error-message {
+
+    background: var(--white);
+
+    padding: 40px;
+
+    text-align: center;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+}
+
+
+.error-message h2 {
+
+    color: var(--dark);
+
+}
+
+
+.error-message a {
+
+    display: inline-block;
+
+    margin-top: 20px;
+
+    color: var(--primary);
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+}
+
+
+.error-message a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.loading {
+
+    background: var(--white);
+
+    padding: 40px;
+
+    text-align: center;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+    font-size: 18px;
+
+    color: var(--text-light);
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 800px) {
+
+    .details-header {
+
+        padding: 18px 25px;
+
+    }
+
+
+    .details-container {
+
+        width: 94%;
+
+    }
+
+
+    .order-detail-card {
+
+        padding: 22px;
+
+    }
+
+
+    .detail-product {
+
+        gap: 20px;
+
+    }
+
+
+    .detail-product img {
+
+        width: 140px;
+
+        height: 140px;
+
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .details-header {
+
+        padding: 15px 18px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+
+    .details-header h1 {
+
+        font-size: 22px;
+
+    }
+
+
+    .details-header a {
+
+        font-size: 13px;
+
+        padding: 8px 12px;
+
+    }
+
+
+    .details-container {
+
+        width: 94%;
+
+        margin: 20px auto;
+
+    }
+
+
+    .order-detail-card {
+
+        padding: 18px;
+
+        border-radius: 12px;
+
+    }
+
+
+    .detail-order-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+
+    .detail-order-header h2 {
+
+        font-size: 21px;
+
+    }
+
+
+    .detail-product {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+
+    .detail-product img {
+
+        width: 150px;
+
+        height: 150px;
+
+        align-self: center;
+
+    }
+
+
+    .detail-product-info {
+
+        width: 100%;
+
+    }
+
+
+    .detail-product-info h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .detail-product-info p {
+
+        font-size: 14px;
+
+    }
+
+
+    .detail-price p {
+
+        font-size: 18px;
+
+    }
+
+
+    .back-orders-btn {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+
+    .error-message,
+    .loading {
+
+        padding: 30px 20px;
+
+    }
+
+}
+
+
+/* ==========================================
+   VERY SMALL DEVICES
+========================================== */
+
+@media (max-width: 380px) {
+
+    .details-header h1 {
+
+        font-size: 20px;
+
+    }
+
+
+    .order-detail-card {
+
+        padding: 15px;
+
+    }
+
+
+    .detail-product img {
+
+        width: 125px;
+
+        height: 125px;
+
+    }
+
+
+    .detail-product-info h2 {
+
+        font-size: 17px;
+
+    }
+
+
+    .detail-price p {
+
+        font-size: 16px;
+
+    }
+
+}

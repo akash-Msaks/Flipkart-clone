@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+     <link
+    rel="icon"
+    type="image/png"
+    href="./icons/shopKart.png"
+>
+
+    <title>Email Verification | ShopKart</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+
+            background: #f5f7fa;
+
+        }
+
+        .otp-container {
+
+            width: 400px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 25px
+                rgba(0, 0, 0, 0.12);
+
+            text-align: center;
+
+        }
+
+        .otp-container h1 {
+
+            margin-bottom: 10px;
+
+        }
+
+        .otp-container p {
+
+            color: #666;
+
+            line-height: 1.5;
+
+        }
+
+        #otpEmail {
+
+            font-weight: bold;
+
+            color: #2874f0;
+
+        }
+
+        #otp {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 20px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 6px;
+
+            font-size: 22px;
+
+            text-align: center;
+
+            letter-spacing: 6px;
+
+            outline: none;
+
+        }
+
+        #otp:focus {
+
+            border-color: #2874f0;
+
+        }
+
+        .verify-btn {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 20px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #2874f0;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+        .verify-btn:hover {
+
+            background: #1769d1;
+
+        }
+
+        .resend-btn {
+
+            margin-top: 15px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #2874f0;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+        }
+
+        .resend-btn:disabled {
+
+            color: #999;
+
+            cursor: not-allowed;
+
+        }
+
+        .back-login {
+
+            display: block;
+
+            margin-top: 20px;
+
+            color: #2874f0;
+
+            text-decoration: none;
+
+        }
+
+        @media (max-width: 500px) {
+
+            .otp-container {
+
+                width: 90%;
+
+                padding: 30px 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="otp-container">
+
+        <h1>
+            Verify Email 📧
+        </h1>
+
+        <p>
+            We sent a 6-digit OTP to:
+        </p>
+
+        <p id="otpEmail">
+            Loading...
+        </p>
+
+
+        <form id="otpForm">
+
+            <input
+                type="text"
+                id="otp"
+                placeholder="Enter OTP"
+                maxlength="6"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="verify-btn"
+            >
+                VERIFY EMAIL
+            </button>
+
+        </form>
+
+
+        <button
+            type="button"
+            id="resendBtn"
+            class="resend-btn"
+        >
+            Resend OTP
+        </button>
+
+
+        <a
+            href="login.html"
+            class="back-login"
+        >
+            Back to Login
+        </a>
+
+    </div>
+
+
+    <script src="./javascript/otp.js"></script>
+
+</body>
+
+</html>

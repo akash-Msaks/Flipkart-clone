@@ -1,117 +1,852 @@
-const cartItems = document.getElementById("cartItems");
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
+// ==========================================
+// CART
+// ==========================================
 
-cart.forEach(function(product, index){
+const cartItems =
+    document.getElementById("cartItems");
 
-    const card = document.createElement("div");
 
-    card.classList.add("cart-card");
+// ==========================================
+// GET LOGGED USER
+// ==========================================
 
-   card.innerHTML = `
-    <img src="${product.image}">
+const loggedUser =
+    JSON.parse(
+        localStorage.getItem("loggedUser")
+    );
 
-    <div class="cart-details">
-        <h2>${product.name}</h2>
 
-        <p class="cart-price">${product.price}</p>
+// ==========================================
+// CHECK LOGIN
+// ==========================================
 
-        <div class="quantity-box">
+if (!loggedUser) {
 
-    <button class="minus-btn" data-index="${index}">-</button>
+    alert("Please login first");
 
-    <span>${product.quantity}</span>
-
-    <button class="plus-btn" data-index="${index}">+</button>
-
-   </div>
-
-        <button class="remove-btn" data-index="${index}">
-            Remove
-        </button>
-    </div>
-`;
-
-    cartItems.appendChild(card);
-
-});
-const plusButtons = document.querySelectorAll(".plus-btn");
-
-plusButtons.forEach(function(button){
-
-    button.addEventListener("click", function(){
-
-        const index = button.dataset.index;
-
-        cart[index].quantity++;
-
-        localStorage.setItem("cart", JSON.stringify(cart));
-
-        location.reload();
-
-    });
-
-});
-
-const minusButtons = document.querySelectorAll(".minus-btn");
-
-minusButtons.forEach(function(button){
-
-    button.addEventListener("click", function(){
-
-        const index = button.dataset.index;
-
-        if(cart[index].quantity > 1){
-
-    cart[index].quantity--;
+    window.location.href =
+        "login.html";
 
 }
 
-        localStorage.setItem("cart", JSON.stringify(cart));
 
-        location.reload();
+// ==========================================
+// GET JWT TOKEN
+// ==========================================
 
-    });
+function getToken() {
 
-});
+    const token =
+        localStorage.getItem("token");
 
-const removeButtons = document.querySelectorAll(".remove-btn");
-let totalItems = 0;
 
-let totalPrice = 0;
+    if (!token) {
 
-cart.forEach(function(product){
+        alert(
+            "Your login session has expired. Please login again."
+        );
 
-    totalItems += product.quantity;
 
-    const price = Number(product.price.replace(/[₹,]/g,""));
+        localStorage.removeItem(
+            "loggedUser"
+        );
 
-    totalPrice += price * product.quantity;
 
-});
+        localStorage.removeItem(
+            "token"
+        );
 
-document.getElementById("totalItems").textContent = totalItems;
 
-document.getElementById("totalPrice").textContent =
-"₹" + totalPrice.toLocaleString();
+        window.location.href =
+            "login.html";
 
-document.getElementById("grandTotal").textContent =
-"₹" + totalPrice.toLocaleString();
 
-removeButtons.forEach(function(button){
+        return null;
 
-    button.addEventListener("click", function(){
+    }
 
-        const index = button.dataset.index;
 
-        // 👇 REMOVE THE PRODUCT
-        cart.splice(index, 1);
+    return token;
 
-        // Save updated cart
-        localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-        // Reload page
-        location.reload();
 
-    });
+// ==========================================
+// LOAD CART FROM BACKEND
+// ==========================================
 
-});
+async function loadCart() {
+
+    try {
+
+        const token =
+            getToken();
+
+
+        if (!token) {
+
+            return;
+
+        }
+
+
+        const response =
+            await fetch(
+                `http://localhost:5001/api/cart/${loggedUser.id}`,
+                {
+
+                    method: "GET",
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+
+                    }
+
+                }
+            );
+
+
+        const cart =
+            await response.json();
+
+
+        // ==================================
+        // AUTHENTICATION ERROR
+        // ==================================
+
+        if (
+            response.status ===
+            401
+        ) {
+
+            alert(
+                "Your login session has expired. Please login again."
+            );
+
+
+            localStorage.removeItem(
+                "loggedUser"
+            );
+
+
+            localStorage.removeItem(
+                "token"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+
+            return;
+
+        }
+
+
+        // ==================================
+        // AUTHORIZATION ERROR
+        // ==================================
+
+        if (
+            response.status ===
+            403
+        ) {
+
+            alert(
+                "You can access only your own cart."
+            );
+
+
+            window.location.href =
+                "index.html";
+
+
+            return;
+
+        }
+
+
+        // ==================================
+        // OTHER SERVER ERRORS
+        // ==================================
+
+        if (!response.ok) {
+
+            throw new Error(
+                cart.message ||
+                "Unable to load cart"
+            );
+
+        }
+
+
+        displayCart(cart);
+
+
+    } catch (error) {
+
+        console.log(
+            "Load cart error:",
+            error
+        );
+
+
+        cartItems.innerHTML =
+            "<p>Unable to load cart</p>";
+
+    }
+
+}
+
+
+// ==========================================
+// DISPLAY CART
+// ==========================================
+
+function displayCart(cart) {
+
+    cartItems.innerHTML = "";
+
+
+    let totalItems = 0;
+
+    let totalPrice = 0;
+
+
+    // ======================================
+    // EMPTY CART
+    // ======================================
+
+    if (
+        !Array.isArray(cart) ||
+        cart.length === 0
+    ) {
+
+        cartItems.innerHTML = `
+
+            <h2>
+                Your cart is empty 🛒
+            </h2>
+
+        `;
+
+
+        updatePriceDetails(
+            0,
+            0
+        );
+
+
+        return;
+
+    }
+
+
+    // ======================================
+    // DISPLAY PRODUCTS
+    // ======================================
+
+    cart.forEach(
+        function (product) {
+
+            totalItems +=
+                Number(
+                    product.quantity
+                );
+
+
+            const price =
+                Number(
+                    product.price
+                );
+
+
+            totalPrice +=
+                price *
+                Number(
+                    product.quantity
+                );
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.classList.add(
+                "cart-card"
+            );
+
+
+            card.innerHTML = `
+
+                <img
+                    src="./images/${product.image}"
+                    alt="${product.name}"
+                >
+
+
+                <div class="cart-details">
+
+                    <h2>
+                        ${product.name}
+                    </h2>
+
+
+                    <p class="cart-price">
+
+                        ₹${price.toLocaleString(
+                            "en-IN"
+                        )}
+
+                    </p>
+
+
+                    <div class="quantity-box">
+
+
+                        <button
+                            class="minus-btn"
+                            data-id="${product.id}"
+                            data-quantity="${product.quantity}"
+                        >
+                            -
+                        </button>
+
+
+                        <span>
+                            ${product.quantity}
+                        </span>
+
+
+                        <button
+                            class="plus-btn"
+                            data-id="${product.id}"
+                            data-quantity="${product.quantity}"
+                        >
+                            +
+                        </button>
+
+
+                    </div>
+
+
+                    <button
+                        class="remove-btn"
+                        data-id="${product.id}"
+                    >
+                        Remove
+                    </button>
+
+
+                </div>
+
+            `;
+
+
+            cartItems.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+    // ======================================
+    // UPDATE PRICE
+    // ======================================
+
+    updatePriceDetails(
+        totalItems,
+        totalPrice
+    );
+
+
+    // ======================================
+    // ADD BUTTON EVENTS
+    // ======================================
+
+    addCartButtonEvents();
+
+}
+
+
+// ==========================================
+// PRICE DETAILS
+// ==========================================
+
+function updatePriceDetails(
+    totalItems,
+    totalPrice
+) {
+
+
+    const totalItemsElement =
+        document.getElementById(
+            "totalItems"
+        );
+
+
+    const totalPriceElement =
+        document.getElementById(
+            "totalPrice"
+        );
+
+
+    const grandTotalElement =
+        document.getElementById(
+            "grandTotal"
+        );
+
+
+    if (totalItemsElement) {
+
+        totalItemsElement.textContent =
+            totalItems;
+
+    }
+
+
+    if (totalPriceElement) {
+
+        totalPriceElement.textContent =
+            "₹" +
+            totalPrice.toLocaleString(
+                "en-IN"
+            );
+
+    }
+
+
+    if (grandTotalElement) {
+
+        grandTotalElement.textContent =
+            "₹" +
+            totalPrice.toLocaleString(
+                "en-IN"
+            );
+
+    }
+
+}
+
+
+// ==========================================
+// BUTTON EVENTS
+// ==========================================
+
+function addCartButtonEvents() {
+
+
+    // ======================================
+    // PLUS
+    // ======================================
+
+    const plusButtons =
+        document.querySelectorAll(
+            ".plus-btn"
+        );
+
+
+    plusButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                async function () {
+
+                    const cartId =
+                        button.dataset.id;
+
+
+                    const currentQuantity =
+                        Number(
+                            button.dataset.quantity
+                        );
+
+
+                    await updateQuantity(
+                        cartId,
+                        currentQuantity + 1
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    // ======================================
+    // MINUS
+    // ======================================
+
+    const minusButtons =
+        document.querySelectorAll(
+            ".minus-btn"
+        );
+
+
+    minusButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                async function () {
+
+                    const cartId =
+                        button.dataset.id;
+
+
+                    const currentQuantity =
+                        Number(
+                            button.dataset.quantity
+                        );
+
+
+                    if (
+                        currentQuantity <= 1
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    await updateQuantity(
+                        cartId,
+                        currentQuantity - 1
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    // ======================================
+    // REMOVE
+    // ======================================
+
+    const removeButtons =
+        document.querySelectorAll(
+            ".remove-btn"
+        );
+
+
+    removeButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                async function () {
+
+                    const cartId =
+                        button.dataset.id;
+
+
+                    await removeCartItem(
+                        cartId
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// UPDATE QUANTITY
+// ==========================================
+
+async function updateQuantity(
+    cartId,
+    quantity
+) {
+
+    try {
+
+        const token =
+            getToken();
+
+
+        if (!token) {
+
+            return;
+
+        }
+
+
+        const response =
+            await fetch(
+                `http://localhost:5001/api/cart/${cartId}`,
+                {
+
+                    method: "PUT",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            `Bearer ${token}`
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            quantity:
+                                quantity
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        // ==================================
+        // AUTHENTICATION ERROR
+        // ==================================
+
+        if (
+            response.status ===
+            401
+        ) {
+
+            alert(
+                "Your login session has expired. Please login again."
+            );
+
+
+            localStorage.removeItem(
+                "loggedUser"
+            );
+
+
+            localStorage.removeItem(
+                "token"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+
+            return;
+
+        }
+
+
+        // ==================================
+        // AUTHORIZATION ERROR
+        // ==================================
+
+        if (
+            response.status ===
+            403
+        ) {
+
+            alert(
+                data.message ||
+                "You can only modify your own cart."
+            );
+
+
+            return;
+
+        }
+
+
+        // ==================================
+        // OTHER ERROR
+        // ==================================
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Failed to update cart"
+            );
+
+        }
+
+
+        // ==================================
+        // RELOAD CART
+        // ==================================
+
+        await loadCart();
+
+
+    } catch (error) {
+
+        console.log(
+            "Update cart error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Unable to update quantity"
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// REMOVE CART ITEM
+// ==========================================
+
+async function removeCartItem(
+    cartId
+) {
+
+    try {
+
+        const token =
+            getToken();
+
+
+        if (!token) {
+
+            return;
+
+        }
+
+
+        const response =
+            await fetch(
+                `http://localhost:5001/api/cart/${cartId}`,
+                {
+
+                    method:
+                        "DELETE",
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+
+                    }
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        // ==================================
+        // AUTHENTICATION ERROR
+        // ==================================
+
+        if (
+            response.status ===
+            401
+        ) {
+
+            alert(
+                "Your login session has expired. Please login again."
+            );
+
+
+            localStorage.removeItem(
+                "loggedUser"
+            );
+
+
+            localStorage.removeItem(
+                "token"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+
+            return;
+
+        }
+
+
+        // ==================================
+        // AUTHORIZATION ERROR
+        // ==================================
+
+        if (
+            response.status ===
+            403
+        ) {
+
+            alert(
+                data.message ||
+                "You can only delete your own cart."
+            );
+
+
+            return;
+
+        }
+
+
+        // ==================================
+        // OTHER ERROR
+        // ==================================
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Failed to remove item"
+            );
+
+        }
+
+
+        // ==================================
+        // RELOAD CART
+        // ==================================
+
+        await loadCart();
+
+
+    } catch (error) {
+
+        console.log(
+            "Remove cart error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Unable to remove product"
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// START
+// ==========================================
+
+loadCart();

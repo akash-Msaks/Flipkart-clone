@@ -4,27 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flipkart clone</title>
+    <link
+    rel="icon"
+    type="image/png"
+     sizes="32x32"
+    href="./icons/shopKart.png"
+>
     <link rel="stylesheet" href="./Css/style.css">
     <link rel="stylesheet" href="./Css/responsive.css">
 </head>
 <body>
       
     <header>
-        <div class="logo"><img src="./images/flipKartLogo.jpg" alt="logo"></div>
+        <div class="logo"><img src="./icons/shopKart.png" alt="logo"></div>
         <div class="search">
            <input type="text" id="searchInput" placeholder="Search for Products">
 
           <span class="search-icon">🔍</span>
         </div>
         <nav>
-            <ul>
-                <li><a href="#">Become seller</a></li>
-                <!-- <li><a href="#">Products</a></li>
-                <li><a href="#">Categories</a></li> -->
-                <!-- <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li> -->
-            </ul>
-        </nav>
+    <ul>
+
+        <li>
+            <a href="#">Become seller</a>
+        </li>
+
+        <li>
+            <a href="orders.html">
+                My Orders
+            </a>
+        </li>
+
+    </ul>
+</nav>
        <div class="login" id="loginSection">
 
     <button id="loginBtn"
@@ -89,65 +101,10 @@
         <button>View All</button>
 
     </div>
+      <div class="product-container" id="productContainer">
+    </div>
 
-        <div class="product-container">
-            <div class="product-card">
-                <img src="./images/mobile1.jpg" alt="Mobile">
-            <p class="price">₹11,9999</p>
-            <h3>IQOO Z10x</h3>
-            <p class="rating">⭐⭐⭐⭐⭐</p>
-            <p class="delivery">free delivery</p>
-            <button class="cart-btn">Add to card</button>
-            </div>
-             <div class="product-card">
-                <img src="./images/bike1.jpg" alt="Mobile">
-            <p class="price">₹15,000</p>
-            <h3>Scooty</h3>
-            <p class="rating">⭐⭐⭐⭐</p>
-            <p class="delivery">free delivery</p>
-            <button class="cart-btn">Add to card</button>
-            </div>
-             <div class="product-card">
-                <img src="./images/appliances1.jpg" alt="Mobile">
-            <p class="price">₹10,999</p>
-            <h3>Washing mission</h3>
-            <p class="rating">⭐⭐⭐⭐</p>
-            <p class="delivery">free delivery</p>
-            <button class="cart-btn">Add to card</button>
-            </div>
-             <div class="product-card">
-                <img src="./images/fastion1.jpg" alt="Mobile">
-            <p class="price">₹15,999</p>
-            <h3>The long leafe</h3>
-            <p class="rating">⭐⭐⭐⭐⭐</p>
-            <p class="delivery">free delivery</p>
-            <button class="cart-btn">Add to card</button>
-            </div>
-             <div class="product-card">
-                <img src="./images/toy1.jpg" alt="Mobile">
-            <p class="price">₹20,9999</p>
-            <h3>Kids Collections</h3>
-            <p class="rating">⭐⭐⭐⭐</p>
-            <p class="delivery">free delivery</p>
-            <button class="cart-btn">Add to card</button>
-            </div>
-             <div class="product-card">
-                <img src="./images/furniture1.jpg" alt="Mobile">
-            <p class="price"> ₹1,35,9999</p>
-            <h3>Sofa set</h3>
-            <p class="rating">⭐⭐⭐</p>
-            <p class="delivery">free delivery</p>
-            <button class="cart-btn">Add to card</button>
-            </div>
-             <div class="product-card">
-                <img src="./images/electronics1.jpg" alt="Mobile">
-            <p class="price">₹30,999</p>
-            <h3>Sony</h3>
-            <p class="rating">⭐⭐⭐⭐</p>
-            <p class="delivery">free delivery</p>
-            <button class="cart-btn">Add to card</button>
-            </div>
-        </div>
+        
     </section>
     <section class="offers">
         <h2>Trending Offers</h2>

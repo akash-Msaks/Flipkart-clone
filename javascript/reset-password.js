@@ -1,43 +1,52 @@
 // ==========================================
-// SIGNUP
+// RESET PASSWORD
 // ==========================================
 
-const signupForm =
-    document.getElementById("signupForm");
+const resetPasswordForm =
+    document.getElementById("resetPasswordForm");
 
 
 // ==========================================
-// SUBMIT SIGNUP
+// GET RESET DATA
 // ==========================================
 
-signupForm.addEventListener(
+const email =
+    localStorage.getItem("resetEmail");
+
+const resetToken =
+    localStorage.getItem("resetToken");
+
+
+// ==========================================
+// CHECK RESET SESSION
+// ==========================================
+
+if (!email || !resetToken) {
+
+    alert(
+        "Password reset session has expired. Please try again."
+    );
+
+    window.location.href =
+        "forgot-password.html";
+
+}
+
+
+// ==========================================
+// SUBMIT RESET PASSWORD
+// ==========================================
+
+resetPasswordForm.addEventListener(
     "submit",
     async function (e) {
 
         e.preventDefault();
 
 
-        // ======================================
-        // GET VALUES
-        // ======================================
-
-        const name =
+        const newPassword =
             document
-                .getElementById("name")
-                .value
-                .trim();
-
-
-        const email =
-            document
-                .getElementById("email")
-                .value
-                .trim();
-
-
-        const password =
-            document
-                .getElementById("password")
+                .getElementById("newPassword")
                 .value
                 .trim();
 
@@ -49,32 +58,12 @@ signupForm.addEventListener(
                 .trim();
 
 
-        // ======================================
-        // VALIDATION
-        // ======================================
-
-        if (
-            !name ||
-            !email ||
-            !password ||
-            !confirmPassword
-        ) {
-
-            alert(
-                "Please fill all fields"
-            );
-
-            return;
-
-        }
-
-
-        // ======================================
+        // ==================================
         // PASSWORD MATCH
-        // ======================================
+        // ==================================
 
         if (
-            password !==
+            newPassword !==
             confirmPassword
         ) {
 
@@ -87,12 +76,12 @@ signupForm.addEventListener(
         }
 
 
-        // ======================================
+        // ==================================
         // PASSWORD LENGTH
-        // ======================================
+        // ==================================
 
         if (
-            password.length < 6
+            newPassword.length < 6
         ) {
 
             alert(
@@ -107,12 +96,12 @@ signupForm.addEventListener(
         try {
 
             // ==================================
-            // REGISTER API
+            // RESET PASSWORD API
             // ==================================
 
             const response =
                 await fetch(
-                    "http://localhost:5001/api/auth/register",
+                    "http://localhost:5001/api/auth/reset-password",
                     {
 
                         method: "POST",
@@ -127,14 +116,14 @@ signupForm.addEventListener(
                         body:
                             JSON.stringify({
 
-                                name:
-                                    name,
-
                                 email:
                                     email,
 
-                                password:
-                                    password
+                                resetToken:
+                                    resetToken,
+
+                                newPassword:
+                                    newPassword
 
                             })
 
@@ -142,23 +131,19 @@ signupForm.addEventListener(
                 );
 
 
-            // ==================================
-            // GET RESPONSE
-            // ==================================
-
             const data =
                 await response.json();
 
 
             // ==================================
-            // REGISTRATION FAILED
+            // FAILED
             // ==================================
 
             if (!response.ok) {
 
                 alert(
                     data.message ||
-                    "Registration failed"
+                    "Unable to reset password"
                 );
 
                 return;
@@ -167,46 +152,38 @@ signupForm.addEventListener(
 
 
             // ==================================
-            // SAVE USER ID FOR OTP
-            // ==================================
-
-            localStorage.setItem(
-                "otpUserId",
-                data.userId
-            );
-
-
-            // ==================================
-            // SAVE EMAIL FOR RESEND
-            // ==================================
-
-            localStorage.setItem(
-                "otpEmail",
-                email
-            );
-
-
-            // ==================================
             // SUCCESS
             // ==================================
 
             alert(
-                "OTP sent to your email 📧"
+                "Password reset successfully ✅"
             );
 
 
             // ==================================
-            // GO TO OTP PAGE
+            // REMOVE RESET DATA
+            // ==================================
+
+            localStorage.removeItem(
+                "resetEmail"
+            );
+
+            localStorage.removeItem(
+                "resetToken"
+            );
+
+
+            // ==================================
+            // GO TO LOGIN
             // ==================================
 
             window.location.href =
-                "otp.html";
-
+                "login.html";
 
         } catch (error) {
 
             console.log(
-                "Signup error:",
+                "Reset password error:",
                 error
             );
 

@@ -1,300 +1,683 @@
 /* ==========================================
-            GOOGLE FONT
+   LOGIN PAGE
 ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* ==========================================
-            GLOBAL
-========================================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-
-    font-family:'Poppins',sans-serif;
-
-    background:#f1f3f6;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    height:100vh;
-}
 
 /* ==========================================
-            LOGIN CONTAINER
+   DESIGN SYSTEM
 ========================================== */
 
-.login-container{
+:root {
 
-    width:900px;
+    --primary: #635bff;
+    --primary-dark: #5048d8;
 
-    height:550px;
+    --secondary: #12b886;
 
-    background:white;
+    --dark: #171827;
+    --text: #202132;
+    --text-light: #6b6d7c;
 
-    display:flex;
+    --background: #f7f7fb;
+    --white: #ffffff;
 
-    border-radius:10px;
+    --border: #e8e8f0;
 
-    overflow:hidden;
+    --shadow:
+        0 12px 35px rgba(28, 29, 49, 0.12);
 
-    box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
+
 
 /* ==========================================
-            LEFT PANEL
+   GLOBAL
 ========================================== */
 
-.login-left{
+* {
 
-    width:40%;
+    margin: 0;
+    padding: 0;
 
-    background:#2874f0;
+    box-sizing: border-box;
 
-    color:white;
-
-    padding:40px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:space-between;
 }
 
-.login-left h1{
 
-    font-size:38px;
+html {
 
-    margin-bottom:20px;
+    scroll-behavior: smooth;
+
 }
 
-.login-left p{
 
-    font-size:18px;
+body {
 
-    line-height:30px;
+    font-family: 'Poppins', sans-serif;
 
-    color:#f5f5f5;
+    background:
+        linear-gradient(
+            135deg,
+            #f7f7fb,
+            #eeedff
+        );
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+
 }
 
-.login-left img{
-
-    width:220px;
-
-    align-self:center;
-
-    margin-top:30px;
-}
 
 /* ==========================================
-            RIGHT PANEL
+   LOGIN CONTAINER
 ========================================== */
 
-.login-right{
+.login-container {
 
-    width:60%;
+    width: 900px;
 
-    display:flex;
+    max-width: 100%;
 
-    justify-content:center;
+    min-height: 550px;
 
-    align-items:center;
+    background: var(--white);
 
-    padding:40px;
+    display: flex;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
 }
+
 
 /* ==========================================
-            FORM
+   LEFT PANEL
 ========================================== */
 
-form{
+.login-left {
 
-    width:100%;
+    width: 40%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #635bff,
+            #5048d8
+        );
+
+    color: white;
+
+    padding: 45px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
 }
 
-form h2{
 
-    margin-bottom:35px;
+.login-left h1 {
 
-    color:#212121;
+    font-size: 42px;
 
-    text-align:center;
+    line-height: 1.15;
+
+    margin-bottom: 18px;
+
+    font-weight: 700;
+
 }
+
+
+.login-left p {
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.88);
+
+}
+
+
+.login-left img {
+
+    width: 220px;
+
+    max-width: 100%;
+
+    align-self: center;
+
+    margin-top: 35px;
+
+    transition: 0.3s;
+
+}
+
+
+.login-left img:hover {
+
+    transform: scale(1.04);
+
+}
+
 
 /* ==========================================
-            INPUT BOX
+   RIGHT PANEL
 ========================================== */
 
-.input-box{
+.login-right {
 
-    margin-bottom:22px;
+    width: 60%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 45px;
+
 }
 
-.input-box label{
-
-    display:block;
-
-    margin-bottom:8px;
-
-    font-weight:500;
-
-    color:#555;
-}
-
-.input-box input{
-
-    width:100%;
-
-    padding:14px;
-
-    border:1px solid #ccc;
-
-    border-radius:6px;
-
-    outline:none;
-
-    font-size:15px;
-
-    transition:.3s;
-}
-
-.input-box input:focus{
-
-    border-color:#2874f0;
-
-    box-shadow:0 0 5px rgba(40,116,240,.3);
-}
 
 /* ==========================================
-            OPTIONS
+   FORM
 ========================================== */
 
-.options{
+form {
 
-    display:flex;
+    width: 100%;
 
-    justify-content:space-between;
+    max-width: 430px;
 
-    align-items:center;
-
-    margin-bottom:25px;
-
-    font-size:14px;
 }
 
-.options a{
 
-    text-decoration:none;
+form h2 {
 
-    color:#2874f0;
+    margin-bottom: 35px;
 
-    font-weight:500;
+    color: var(--dark);
+
+    text-align: center;
+
+    font-size: 25px;
+
 }
 
-.options a:hover{
-
-    text-decoration:underline;
-}
 
 /* ==========================================
-            LOGIN BUTTON
+   INPUT BOX
 ========================================== */
 
-.login-btn{
+.input-box {
 
-    width:100%;
+    margin-bottom: 22px;
 
-    padding:15px;
-
-    background:#fb641b;
-
-    color:white;
-
-    border:none;
-
-    border-radius:6px;
-
-    font-size:17px;
-
-    cursor:pointer;
-
-    transition:.3s;
 }
 
-.login-btn:hover{
 
-    background:#e85b12;
+.input-box label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 500;
+
+    color: var(--text);
+
+    font-size: 14px;
+
 }
+
+
+.input-box input {
+
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: 1px solid var(--border);
+
+    background: #fafafe;
+
+    color: var(--text);
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+
+}
+
+
+.input-box input:focus {
+
+    border-color: var(--primary);
+
+    background: var(--white);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99, 91, 255, 0.10);
+
+}
+
 
 /* ==========================================
-            SIGNUP LINK
+   OPTIONS
 ========================================== */
 
-.signup-link{
+.options {
 
-    text-align:center;
+    display: flex;
 
-    margin-top:30px;
+    justify-content: space-between;
 
-    font-size:15px;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+    font-size: 13px;
+
 }
 
-.signup-link a{
 
-    text-decoration:none;
+.options label {
 
-    color:#2874f0;
+    display: flex;
 
-    font-weight:600;
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--text-light);
+
 }
 
-.signup-link a:hover{
 
-    text-decoration:underline;
+.options input {
+
+    accent-color: var(--primary);
+
 }
+
+
+.options a {
+
+    text-decoration: none;
+
+    color: var(--primary);
+
+    font-weight: 600;
+
+    transition: 0.3s;
+
+}
+
+
+.options a:hover {
+
+    color: var(--primary-dark);
+
+    text-decoration: underline;
+
+}
+
 
 /* ==========================================
-            RESPONSIVE
+   LOGIN BUTTON
 ========================================== */
 
-@media(max-width:900px){
+.login-btn {
 
-.login-container{
+    width: 100%;
 
-    width:95%;
+    padding: 14px;
 
-    height:auto;
+    background: var(--primary);
 
-    flex-direction:column;
+    color: white;
+
+    border: none;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
 }
 
-.login-left{
 
-    width:100%;
+.login-btn:hover {
 
-    text-align:center;
+    background: var(--primary-dark);
 
-    align-items:center;
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(99, 91, 255, 0.22);
+
 }
 
-.login-left img{
 
-    width:170px;
+.login-btn:active {
+
+    transform: scale(0.98);
+
 }
 
-.login-right{
 
-    width:100%;
+/* ==========================================
+   SIGNUP LINK
+========================================== */
+
+.signup-link {
+
+    text-align: center;
+
+    margin-top: 30px;
+
+    font-size: 14px;
+
+    color: var(--text-light);
+
 }
+
+
+.signup-link a {
+
+    text-decoration: none;
+
+    color: var(--primary);
+
+    font-weight: 600;
+
+}
+
+
+.signup-link a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 900px) {
+
+    body {
+
+        padding: 20px;
+
+    }
+
+
+    .login-container {
+
+        width: 700px;
+
+        min-height: 520px;
+
+    }
+
+
+    .login-left {
+
+        width: 38%;
+
+        padding: 30px;
+
+    }
+
+
+    .login-left h1 {
+
+        font-size: 34px;
+
+    }
+
+
+    .login-right {
+
+        width: 62%;
+
+        padding: 35px;
+
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 650px) {
+
+    body {
+
+        padding: 15px;
+
+        align-items: flex-start;
+
+        padding-top: 30px;
+
+        padding-bottom: 30px;
+
+    }
+
+
+    .login-container {
+
+        width: 100%;
+
+        min-height: auto;
+
+        flex-direction: column;
+
+        border-radius: 15px;
+
+    }
+
+
+    .login-left {
+
+        width: 100%;
+
+        padding: 30px 25px;
+
+        text-align: center;
+
+        align-items: center;
+
+    }
+
+
+    .login-left h1 {
+
+        font-size: 30px;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .login-left p {
+
+        font-size: 14px;
+
+        line-height: 1.6;
+
+    }
+
+
+    .login-left img {
+
+        width: 150px;
+
+        margin-top: 20px;
+
+    }
+
+
+    .login-right {
+
+        width: 100%;
+
+        padding: 30px 25px;
+
+    }
+
+
+    form h2 {
+
+        font-size: 22px;
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .input-box {
+
+        margin-bottom: 18px;
+
+    }
+
+
+    .options {
+
+        font-size: 12px;
+
+    }
+
+
+    .login-btn {
+
+        padding: 13px;
+
+    }
+
+
+    .signup-link {
+
+        font-size: 13px;
+
+        margin-top: 22px;
+
+    }
+
+}
+
+
+/* ==========================================
+   VERY SMALL DEVICES
+========================================== */
+
+@media (max-width: 380px) {
+
+    body {
+
+        padding: 10px;
+
+        padding-top: 20px;
+
+    }
+
+
+    .login-left {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .login-left h1 {
+
+        font-size: 27px;
+
+    }
+
+
+    .login-left p {
+
+        font-size: 13px;
+
+    }
+
+
+    .login-left img {
+
+        width: 120px;
+
+    }
+
+
+    .login-right {
+
+        padding: 25px 18px;
+
+    }
+
+
+    form h2 {
+
+        font-size: 20px;
+
+    }
+
+
+    .input-box input {
+
+        padding: 12px;
+
+    }
+
+
+    .options {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
 
 }

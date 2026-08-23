@@ -127,12 +127,19 @@ nav li{
    SMALL MOBILE
 ========================================== */
 
-@media (max-width:480px){
+@media (max-width:500px){
 
-.logo img{
-    width:70px;
+@media (max-width: 500px) {
+
+    .logo img {
+        width: 75px;
+        height: 60px;
+        object-fit: contain;
+        transform: scale(1.1);
+    }
+
+    /* rest of your mobile CSS... */
 }
-
 .search input{
     font-size:14px;
 }

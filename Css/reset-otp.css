@@ -1,0 +1,436 @@
+/* ==========================================
+   RESET OTP PAGE
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+/* ==========================================
+   DESIGN SYSTEM
+========================================== */
+
+:root {
+
+    --primary: #635bff;
+    --primary-dark: #5048d8;
+
+    --secondary: #12b886;
+
+    --dark: #171827;
+    --text: #202132;
+    --text-light: #6b6d7c;
+
+    --background: #f7f7fb;
+    --white: #ffffff;
+
+    --border: #e8e8f0;
+
+    --shadow:
+        0 12px 35px
+        rgba(28, 29, 49, 0.12);
+
+}
+
+
+/* ==========================================
+   GLOBAL
+========================================== */
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+
+    font-family: 'Poppins', sans-serif;
+
+    color: var(--text);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7f7fb,
+            #eeedff
+        );
+
+}
+
+
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+
+.reset-otp-container {
+
+    width: 420px;
+
+    max-width: 100%;
+
+    padding: 40px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+}
+
+
+/* ==========================================
+   HEADING
+========================================== */
+
+.reset-otp-container h1 {
+
+    margin-bottom: 15px;
+
+    font-size: 29px;
+
+    font-weight: 700;
+
+    color: var(--dark);
+
+}
+
+
+.reset-otp-container > p {
+
+    color: var(--text-light);
+
+    line-height: 1.6;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================
+   RESET EMAIL
+========================================== */
+
+#resetEmail {
+
+    margin-top: 8px;
+
+    margin-bottom: 25px;
+
+    color: var(--primary);
+
+    font-weight: 600;
+
+    word-break: break-word;
+
+}
+
+
+/* ==========================================
+   INPUT BOX
+========================================== */
+
+.input-box {
+
+    text-align: left;
+
+}
+
+
+.input-box label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    color: var(--text);
+
+}
+
+
+.input-box input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: #fafafe;
+
+    color: var(--dark);
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    text-align: center;
+
+    letter-spacing: 7px;
+
+    transition: 0.3s;
+
+}
+
+
+.input-box input:focus {
+
+    border-color: var(--primary);
+
+    background: var(--white);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99, 91, 255, 0.10);
+
+}
+
+
+/* ==========================================
+   VERIFY BUTTON
+========================================== */
+
+.verify-btn {
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.verify-btn:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(99, 91, 255, 0.22);
+
+}
+
+
+.verify-btn:active {
+
+    transform: scale(0.98);
+
+}
+
+
+/* ==========================================
+   RESEND BUTTON
+========================================== */
+
+.resend-btn {
+
+    margin-top: 18px;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.resend-btn:hover:not(:disabled) {
+
+    color: var(--primary-dark);
+
+    text-decoration: underline;
+
+}
+
+
+.resend-btn:disabled {
+
+    color: #aaa;
+
+    cursor: not-allowed;
+
+}
+
+
+/* ==========================================
+   BACK TO LOGIN
+========================================== */
+
+.back-login {
+
+    display: block;
+
+    margin-top: 20px;
+
+    color: var(--primary);
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.back-login:hover {
+
+    color: var(--primary-dark);
+
+    text-decoration: underline;
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding: 20px;
+
+    }
+
+
+    .reset-otp-container {
+
+        width: 100%;
+
+        padding: 35px 25px;
+
+        border-radius: 15px;
+
+    }
+
+
+    .reset-otp-container h1 {
+
+        font-size: 26px;
+
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 400px) {
+
+    body {
+
+        padding: 15px;
+
+    }
+
+
+    .reset-otp-container {
+
+        padding: 30px 20px;
+
+    }
+
+
+    .reset-otp-container h1 {
+
+        font-size: 23px;
+
+    }
+
+
+    .reset-otp-container > p {
+
+        font-size: 13px;
+
+    }
+
+
+    .input-box input {
+
+        padding: 12px;
+
+        font-size: 20px;
+
+        letter-spacing: 5px;
+
+    }
+
+
+    .verify-btn {
+
+        padding: 13px;
+
+    }
+
+}
