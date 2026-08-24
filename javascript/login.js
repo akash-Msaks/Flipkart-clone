@@ -53,32 +53,21 @@ loginForm.addEventListener(
             // ===============================
 
             const response =
-                await fetch(
-                    "http://https://flipkart-clone-91e6.onrender.com/api/auth/login",
-                    {
+    await fetch(
+        "https://flipkart-clone-91e6.onrender.com/api/auth/login",
+        {
+            method: "POST",
 
-                        method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-                        headers: {
-
-                            "Content-Type":
-                                "application/json"
-
-                        },
-
-                        body:
-                            JSON.stringify({
-
-                                email:
-                                    email,
-
-                                password:
-                                    password
-
-                            })
-
-                    }
-                );
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        }
+    );
 
 
             // ===============================
