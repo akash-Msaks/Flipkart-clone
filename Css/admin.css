@@ -1534,60 +1534,181 @@ body {
     }
 
 
-    /* SIDEBAR BECOMES TOP MENU */
+   /* ==========================================
+   MOBILE
+========================================== */
 
-    .sidebar {
+.mobile-menu-btn {
+    display: none;
+}
 
-        position: static;
 
-        width: 100%;
+@media (max-width: 700px) {
 
-        height: auto;
+    /* ===============================
+       HEADER
+    =============================== */
 
-        padding: 10px;
+    .admin-header {
 
-        display: flex;
+        height: 65px;
 
-        gap: 8px;
+        padding: 10px 15px;
 
-        overflow-x: auto;
-
-        border-right: none;
-
-        border-bottom: 1px solid var(--border);
-
-        box-shadow: none;
+        gap: 12px;
 
     }
 
 
-    .sidebar h2 {
+    .admin-header h1 {
+
+        font-size: 17px;
+
+        flex: 1;
+
+    }
+
+
+    .admin-user {
+
+        gap: 8px;
+
+    }
+
+
+    #adminName {
 
         display: none;
 
     }
 
 
-    .menu-btn {
+    #logoutBtn {
 
-        width: auto;
-
-        min-width: max-content;
-
-        margin: 0;
-
-        padding: 9px 13px;
+        padding: 8px 12px;
 
         font-size: 12px;
 
     }
 
 
+    /* ===============================
+       HAMBURGER BUTTON
+    =============================== */
+
+    .mobile-menu-btn {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 40px;
+
+        height: 40px;
+
+        border: none;
+
+        border-radius: 8px;
+
+        background: var(--primary);
+
+        color: white;
+
+        font-size: 22px;
+
+        cursor: pointer;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .mobile-menu-btn:hover {
+
+        background: var(--primary-dark);
+
+    }
+
+
+    /* ===============================
+       SIDEBAR
+    =============================== */
+
+    .sidebar {
+
+        position: fixed;
+
+        top: 65px;
+
+        left: 0;
+
+        width: 250px;
+
+        height: calc(100vh - 65px);
+
+        padding: 25px 15px;
+
+        background: var(--white);
+
+        border-right: 1px solid var(--border);
+
+        box-shadow: 5px 0 20px rgba(28, 29, 49, 0.15);
+
+        overflow-y: auto;
+
+        z-index: 1500;
+
+        transform: translateX(-100%);
+
+        transition: transform 0.3s ease;
+
+    }
+
+
+    .sidebar.open {
+
+        transform: translateX(0);
+
+    }
+
+
+    .sidebar h2 {
+
+        display: block;
+
+        font-size: 18px;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .menu-btn {
+
+        width: 100%;
+
+        min-width: 0;
+
+        padding: 13px 15px;
+
+        margin-bottom: 8px;
+
+        font-size: 14px;
+
+    }
+
+
+    /* ===============================
+       MAIN
+    =============================== */
+
     .admin-main {
 
         margin-left: 0;
 
-        padding: 20px 15px;
+        padding: 85px 15px 30px;
 
     }
 
@@ -1615,11 +1736,15 @@ body {
     }
 
 
+    /* ===============================
+       DASHBOARD
+    =============================== */
+
     .dashboard-cards {
 
         grid-template-columns: 1fr;
 
-        gap: 12px;
+        gap: 15px;
 
         margin-bottom: 25px;
 
@@ -1628,10 +1753,16 @@ body {
 
     .dashboard-card {
 
-        padding: 18px;
+        padding: 25px;
+
+        min-height: 145px;
 
     }
 
+
+    /* ===============================
+       PRODUCTS
+    =============================== */
 
     .products-container {
 
@@ -1639,6 +1770,10 @@ body {
 
     }
 
+
+    /* ===============================
+       ORDERS
+    =============================== */
 
     .admin-order-header {
 
@@ -1688,6 +1823,10 @@ body {
     }
 
 
+    /* ===============================
+       DELIVERY
+    =============================== */
+
     .delivery-partners-container {
 
         grid-template-columns: 1fr;
@@ -1702,52 +1841,13 @@ body {
     }
 
 
+    /* ===============================
+       MODAL
+    =============================== */
+
     .modal-content {
 
         padding: 22px;
-
-    }
-
-}
-
-
-/* ==========================================
-   VERY SMALL DEVICES
-========================================== */
-
-@media (max-width: 380px) {
-
-    .admin-header h1 {
-
-        font-size: 16px;
-
-    }
-
-
-    .admin-main {
-
-        padding: 18px 10px;
-
-    }
-
-
-    .product-card {
-
-        padding: 15px;
-
-    }
-
-
-    .admin-order-card {
-
-        padding: 15px;
-
-    }
-
-
-    .users-table-container {
-
-        padding: 12px;
 
     }
 

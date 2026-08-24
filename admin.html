@@ -35,6 +35,9 @@
     ====================================== -->
 
     <header class="admin-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+        ☰
+    </button>
 
         <h1>
             Flipkart Admin Panel 👑
@@ -655,7 +658,41 @@
     ====================================== -->
 
     <script src="./javascript/admin.js"></script>
+   <script>
 
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const sidebar =
+        document.querySelector(".sidebar");
+
+
+    mobileMenuBtn.addEventListener("click", function () {
+
+        sidebar.classList.toggle("open");
+
+    });
+
+
+    const menuButtons =
+        document.querySelectorAll(".menu-btn");
+
+
+    menuButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            if (window.innerWidth <= 700) {
+
+                sidebar.classList.remove("open");
+
+            }
+
+        });
+
+    });
+
+</script>
 
 </body>
 
