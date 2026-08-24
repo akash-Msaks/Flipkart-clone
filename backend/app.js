@@ -39,18 +39,27 @@ app.use(express.json());
  app.get("/",(req,res)=>{
     res.send("FlipKart Backend is Running");
  });
+app.get("/api/users", (req, res) => {
 
- app.get("/api/users",(req,res)=>{
-    db.query("select * from users",(err,result)=>{
-        if(err){
-            console.log(err);
-            return res.status(500).json({
-                message:"Database error"
-            });
+    db.query(
+        `SELECT id, name, email, role, email_verified
+         FROM users`,
+        (err, result) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    message: "Database error"
+                });
+            }
+
+            res.json(result);
         }
-        res.json(result);
-    });
- });
+    );
+
+});
+ 
 
  // ==========================================
 // REGISTER
