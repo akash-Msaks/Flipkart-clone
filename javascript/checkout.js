@@ -36,7 +36,7 @@ if (!loggedUser) {
 // ==========================================
 
 const API_BASE =
-    "http://https://flipkart-clone-91e6.onrender.com";
+    "https://flipkart-clone-91e6.onrender.com";
 
 
 // ==========================================

@@ -61,11 +61,11 @@ if (
 // ==========================================
 
 const DELIVERY_ORDERS_API =
-    "http://https://flipkart-clone-91e6.onrender.com/api/delivery/orders";
+    "https://flipkart-clone-91e6.onrender.com/api/delivery/orders";
 
 
 const DELIVERY_STATUS_API =
-    "http://https://flipkart-clone-91e6.onrender.com/api/delivery/orders";
+    "https://flipkart-clone-91e6.onrender.com/api/delivery/orders";
 
 
 // ==========================================

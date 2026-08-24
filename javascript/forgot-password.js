@@ -45,7 +45,7 @@ forgotPasswordForm.addEventListener(
 
             const response =
                 await fetch(
-                    "http://https://flipkart-clone-91e6.onrender.com/api/auth/forgot-password",
+                    "https://flipkart-clone-91e6.onrender.com/api/auth/forgot-password",
                     {
 
                         method: "POST",

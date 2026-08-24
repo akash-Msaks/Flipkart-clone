@@ -102,7 +102,7 @@ async function loadProducts() {
 
         const response =
             await fetch(
-                "http://https://flipkart-clone-91e6.onrender.com/api/products"
+                "https://flipkart-clone-91e6.onrender.com/api/products"
             );
 
 
@@ -401,7 +401,7 @@ const product =
 
                 const response =
                     await fetch(
-                        "http://https://flipkart-clone-91e6.onrender.com/api/cart",
+                        "https://flipkart-clone-91e6.onrender.com/api/cart",
                         {
 
                             method: "POST",
@@ -570,7 +570,7 @@ async function loadCartCount() {
 
         const response =
             await fetch(
-                `http://https://flipkart-clone-91e6.onrender.com/api/cart/count/${currentUser.id}`,
+                `https://flipkart-clone-91e6.onrender.com/api/cart/count/${currentUser.id}`,
                 {
 
                     method: "GET",

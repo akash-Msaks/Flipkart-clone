@@ -107,7 +107,7 @@ otpForm.addEventListener(
 
             const response =
                 await fetch(
-                    "http://https://flipkart-clone-91e6.onrender.com/api/auth/verify-email",
+                    "https://flipkart-clone-91e6.onrender.com/api/auth/verify-email",
                     {
 
                         method: "POST",
@@ -220,7 +220,7 @@ resendBtn.addEventListener(
 
             const response =
                 await fetch(
-                    "http://https://flipkart-clone-91e6.onrender.com/api/auth/resend-otp",
+                    "https://flipkart-clone-91e6.onrender.com/api/auth/resend-otp",
                     {
 
                         method: "POST",

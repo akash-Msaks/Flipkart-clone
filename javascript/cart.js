@@ -92,7 +92,7 @@ async function loadCart() {
 
         const response =
             await fetch(
-                `http://https://flipkart-clone-91e6.onrender.com/api/cart/${loggedUser.id}`,
+                `https://flipkart-clone-91e6.onrender.com/api/cart/${loggedUser.id}`,
                 {
 
                     method: "GET",
@@ -586,7 +586,7 @@ async function updateQuantity(
 
         const response =
             await fetch(
-                `http://https://flipkart-clone-91e6.onrender.com/api/cart/${cartId}`,
+                `https://flipkart-clone-91e6.onrender.com/api/cart/${cartId}`,
                 {
 
                     method: "PUT",
@@ -732,7 +732,7 @@ async function removeCartItem(
 
         const response =
             await fetch(
-                `http://https://flipkart-clone-91e6.onrender.com/api/cart/${cartId}`,
+                `https://flipkart-clone-91e6.onrender.com/api/cart/${cartId}`,
                 {
 
                     method:
