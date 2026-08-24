@@ -37,9 +37,8 @@
 @media (max-width: 768px) {
 
     body {
-        padding-top: 160px;
+        padding-top: 260px;
     }
-
     header {
         flex-direction: column;
         gap: 15px;
