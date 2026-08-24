@@ -61,19 +61,19 @@ if (adminNameElement) {
 // ==========================================
 
 const PRODUCTS_API =
-    "http://localhost:5001/api/admin/products";
+    "http://https://flipkart-clone-91e6.onrender.com/api/admin/products";
 
 const USERS_API =
-    "http://localhost:5001/api/admin/users";
+    "http://https://flipkart-clone-91e6.onrender.com/api/admin/users";
 
 const DASHBOARD_API =
-    "http://localhost:5001/api/admin/dashboard";
+    "http://https://flipkart-clone-91e6.onrender.com/api/admin/dashboard";
 
 const ORDERS_API =
-    "http://localhost:5001/api/admin/orders";
+    "http://https://flipkart-clone-91e6.onrender.com/api/admin/orders";
 
 const DELIVERY_PARTNERS_API =
-    "http://localhost:5001/api/admin/delivery-partners";
+    "http://https://flipkart-clone-91e6.onrender.com/api/admin/delivery-partners";
 
 
 // ==========================================

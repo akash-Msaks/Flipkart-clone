@@ -36,7 +36,7 @@ if (!loggedUser) {
 // ==========================================
 
 const API_BASE =
-    "http://localhost:5001";
+    "http://https://flipkart-clone-91e6.onrender.com";
 
 
 // ==========================================

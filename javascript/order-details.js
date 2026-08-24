@@ -86,7 +86,7 @@ async function loadOrderDetails() {
 
         const response =
             await fetch(
-                `http://localhost:5001/api/orders/${loggedUser.id}/${orderId}`,
+                `http://https://flipkart-clone-91e6.onrender.com/api/orders/${loggedUser.id}/${orderId}`,
                 {
 
                     method: "GET",

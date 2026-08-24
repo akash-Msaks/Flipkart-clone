@@ -94,7 +94,7 @@ resetOtpForm.addEventListener(
 
             const response =
                 await fetch(
-                    "http://localhost:5001/api/auth/verify-reset-otp",
+                    "http://https://flipkart-clone-91e6.onrender.com/api/auth/verify-reset-otp",
                     {
 
                         method: "POST",
@@ -204,7 +204,7 @@ resendBtn.addEventListener(
 
             const response =
                 await fetch(
-                    "http://localhost:5001/api/auth/forgot-password",
+                    "http://https://flipkart-clone-91e6.onrender.com/api/auth/forgot-password",
                     {
 
                         method: "POST",

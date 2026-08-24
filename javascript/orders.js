@@ -105,7 +105,7 @@ async function loadOrders() {
 
         const response =
             await fetch(
-                `http://localhost:5001/api/orders/${loggedUser.id}`,
+                `http://https://flipkart-clone-91e6.onrender.com/api/orders/${loggedUser.id}`,
                 {
 
                     method:
@@ -1045,7 +1045,7 @@ function displayOrders(
 
                         const response =
                             await fetch(
-                                `http://localhost:5001/api/orders/${loggedUser.id}/${orderId}/cancel`,
+                                `http://https://flipkart-clone-91e6.onrender.com/api/orders/${loggedUser.id}/${orderId}/cancel`,
                                 {
 
                                     method:
