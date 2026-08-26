@@ -39,7 +39,8 @@ app.use(express.json());
  app.get("/",(req,res)=>{
     res.send("FlipKart Backend is Running");
  });
-app.get("/api/users", (req, res) => {
+app.get("/api/users",authenticateToken,
+    requireAdmin, (req, res) => {
 
     db.query(
         `SELECT id, name, email, role, email_verified
@@ -60,8 +61,7 @@ app.get("/api/users", (req, res) => {
 
 });
  
-
- // ==========================================
+// ==========================================
 // REGISTER
 // ==========================================
 
@@ -76,7 +76,6 @@ app.post(
                 email,
                 password
             } = req.body;
-
 
             // ==================================
             // VALIDATION
@@ -95,7 +94,6 @@ app.post(
 
             }
 
-
             // ==================================
             // CHECK EXISTING USER
             // ==================================
@@ -103,10 +101,7 @@ app.post(
             db.query(
                 "SELECT * FROM users WHERE email = ?",
                 [email],
-                async (
-                    err,
-                    result
-                ) => {
+                async (err, result) => {
 
                     if (err) {
 
@@ -119,22 +114,167 @@ app.post(
 
                     }
 
-
                     // ==================================
-                    // EMAIL ALREADY EXISTS
+                    // EXISTING USER
                     // ==================================
 
-                    if (
-                        result.length > 0
-                    ) {
+                    if (result.length > 0) {
 
-                        return res.status(409).json({
-                            message:
-                                "Email already registered"
-                        });
+                        const existingUser = result[0];
 
+                        // ----------------------------------
+                        // ALREADY VERIFIED
+                        // ----------------------------------
+
+                        if (
+                            existingUser.email_verified
+                        ) {
+
+                            return res.status(409).json({
+
+                                message:
+                                    "Email already registered"
+
+                            });
+
+                        }
+
+                        // ----------------------------------
+                        // OLD UNVERIFIED ACCOUNT
+                        // ----------------------------------
+
+                      const hashedPassword =
+    await bcrypt.hash(password, 10);
+
+const otp =
+    crypto.randomInt(100000, 1000000).toString();
+
+const updateSql = `
+
+    UPDATE users
+
+    SET
+        name = ?,
+        password = ?,
+        email_verified = false,
+        email_otp = ?,
+        email_otp_expires =
+            DATE_ADD(
+                NOW(),
+                INTERVAL 5 MINUTE
+            )
+
+    WHERE id = ?
+
+`;
+
+db.query(
+    updateSql,
+
+    [
+        name,
+        hashedPassword,
+        otp,
+        existingUser.id
+    ],
+
+    async (updateErr) => {
+
+        if (updateErr) {
+
+            console.log(
+                "Update unverified user error:",
+                updateErr
+            );
+
+            return res.status(500).json({
+                message:
+                    "Unable to restart registration"
+            });
+
+        }
+
+        try {
+
+            await transporter.sendMail({
+
+                from:
+                    process.env.EMAIL_USER,
+
+                to:
+                    email,
+
+                subject:
+                    "ShopKart Email Verification OTP",
+
+                html: `
+
+                    <div
+                        style="
+                            font-family: Arial;
+                            padding: 20px;
+                        "
+                    >
+
+                        <h2>
+                            Welcome to ShopKart 🛒
+                        </h2>
+
+                        <p>
+                            Your new email verification OTP is:
+                        </p>
+
+                        <h1>
+                            ${otp}
+                        </h1>
+
+                        <p>
+                            This OTP will expire in
+                            <strong>
+                                5 minutes
+                            </strong>.
+                        </p>
+
+                    </div>
+
+                `
+
+            });
+
+            return res.status(200).json({
+
+                message:
+                    "OTP sent to your email.",
+
+                userId:
+                    existingUser.id,
+
+                requiresVerification:
+                    true
+
+            });
+
+        } catch (emailError) {
+
+            console.log(
+                "Email sending error:",
+                emailError
+            );
+
+            return res.status(500).json({
+
+                message:
+                    "Unable to send verification email"
+
+            });
+
+        }
+
+    }
+);
+
+return;
                     }
-
 
                     // ==================================
                     // HASH PASSWORD
@@ -146,26 +286,12 @@ app.post(
                             10
                         );
 
-
                     // ==================================
-                    // GENERATE 6 DIGIT OTP
-                    // ==================================
-
-                    const otp =
-                        Math.floor(
-                            100000 +
-                            Math.random() *
-                            900000
-                        ).toString();
-
-
-                    // ==================================
-                    // OTP EXPIRY
-                    // 5 MINUTES
+                    // GENERATE OTP
                     // ==================================
 
-                   
-
+                  const otp =
+    crypto.randomInt(100000, 1000000).toString();
 
                     // ==================================
                     // INSERT USER
@@ -173,57 +299,58 @@ app.post(
 
                     const sql = `
 
-    INSERT INTO users
-    (
-        name,
-        email,
-        password,
-        email_verified,
-        email_otp,
-        email_otp_expires
-    )
+                        INSERT INTO users
+                        (
+                            name,
+                            email,
+                            password,
+                            email_verified,
+                            email_otp,
+                            email_otp_expires
+                        )
 
-    VALUES (
-        ?,
-        ?,
-        ?,
-        ?,
-        ?,
-        DATE_ADD(NOW(), INTERVAL 5 MINUTE)
-    )
+                        VALUES (
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            DATE_ADD(
+                                NOW(),
+                                INTERVAL 5 MINUTE
+                            )
+                        )
 
-`;
+                    `;
 
                     db.query(
                         sql,
 
                         [
-                          name,
-                           email,
-                           hashedPassword,
-                           false,
+                            name,
+                            email,
+                            hashedPassword,
+                            false,
                             otp
                         ],
 
-                        async (
-                            err,
-                            result
-                        ) => {
+                        async (err, result) => {
 
                             if (err) {
 
                                 console.log(err);
 
                                 return res.status(500).json({
+
                                     message:
                                         "Registration failed"
+
                                 });
 
                             }
 
-
                             // ==================================
-                            // SEND EMAIL
+                            // SEND OTP EMAIL
                             // ==================================
 
                             try {
@@ -278,12 +405,11 @@ app.post(
 
                                 });
 
-
                                 // ==================================
                                 // SUCCESS
                                 // ==================================
 
-                                res.status(201).json({
+                                return res.status(201).json({
 
                                     message:
                                         "Registration successful. OTP sent to your email.",
@@ -296,28 +422,33 @@ app.post(
 
                                 });
 
-
-                            } catch (
-                                emailError
-                            ) {
+                            } catch (emailError) {
 
                                 console.log(
                                     "Email sending error:",
                                     emailError
                                 );
 
-
                                 // ==================================
-                                // DELETE USER IF EMAIL FAILED
+                                // DELETE USER IF EMAIL FAILS
                                 // ==================================
 
                                 db.query(
                                     "DELETE FROM users WHERE id = ?",
-                                    [
-                                        result.insertId
-                                    ]
-                                );
+                                    [result.insertId],
+                                    (deleteErr) => {
 
+                                        if (deleteErr) {
+
+                                            console.log(
+                                                "Cleanup delete error:",
+                                                deleteErr
+                                            );
+
+                                        }
+
+                                    }
+                                );
 
                                 return res.status(500).json({
 
@@ -334,17 +465,14 @@ app.post(
                 }
             );
 
-        } catch (
-            error
-        ) {
+        } catch (error) {
 
             console.log(
                 "Registration error:",
                 error
             );
 
-
-            res.status(500).json({
+            return res.status(500).json({
 
                 message:
                     "Registration failed"
@@ -600,11 +728,8 @@ app.post(
                 }
 
                 // Generate new OTP
-                const otp =
-                    Math.floor(
-                        100000 +
-                        Math.random() * 900000
-                    ).toString();
+               const otp =
+    crypto.randomInt(100000, 1000000).toString();
 
                
                 db.query(
@@ -844,11 +969,7 @@ app.post(
                 // ==================================
 
                 const otp =
-                    Math.floor(
-                        100000 +
-                        Math.random() * 900000
-                    ).toString();
-
+    crypto.randomInt(100000, 1000000).toString();
 
                 // ==================================
                 // SAVE OTP
@@ -4808,382 +4929,7 @@ app.post(
 
     }
 );
-// ==========================================
-// PAYMENT - VERIFY RAZORPAY PAYMENT
-// ==========================================
 
-app.post(
-    "/api/payment/verify",
-    authenticateToken,
-    async (req, res) => {
-
-        try {
-
-            const userId =
-                req.user.id;
-
-
-            const {
-
-                razorpay_payment_id,
-
-                razorpay_order_id,
-
-                razorpay_signature,
-
-                payment_method,
-
-                address
-
-            } = req.body;
-
-
-            // ==================================
-            // VALIDATE PAYMENT RESPONSE
-            // ==================================
-
-            if (
-                !razorpay_payment_id ||
-                !razorpay_order_id ||
-                !razorpay_signature
-            ) {
-
-                return res.status(400).json({
-
-                    message:
-                        "Incomplete payment details"
-
-                });
-
-            }
-
-
-            // ==================================
-            // FIND OUR LOCAL ORDER
-            // ==================================
-
-            const [orders] =
-                await db.promise().query(
-                    `
-                    SELECT *
-
-                    FROM orders
-
-                    WHERE razorpay_order_id = ?
-
-                    AND user_id = ?
-
-                    LIMIT 1
-                    `,
-                    [
-                        razorpay_order_id,
-                        userId
-                    ]
-                );
-
-
-            if (
-                orders.length === 0
-            ) {
-
-                return res.status(404).json({
-
-                    message:
-                        "Payment order not found"
-
-                });
-
-            }
-
-
-            const order =
-                orders[0];
-
-
-            // ==================================
-            // PREVENT DUPLICATE VERIFICATION
-            // ==================================
-
-            if (
-                order.payment_status ===
-                "PAID"
-            ) {
-
-                return res.status(400).json({
-
-                    message:
-                        "Payment has already been verified"
-
-                });
-
-            }
-
-
-            // ==================================
-            // CREATE SIGNATURE
-            // ==================================
-
-            const generatedSignature =
-                crypto
-                    .createHmac(
-                        "sha256",
-                        process.env.RAZORPAY_KEY_SECRET
-                    )
-                    .update(
-                        razorpay_order_id +
-                        "|" +
-                        razorpay_payment_id
-                    )
-                    .digest("hex");
-
-
-            // ==================================
-            // TIMING SAFE COMPARISON
-            // ==================================
-
-            const receivedBuffer =
-                Buffer.from(
-                    razorpay_signature
-                );
-
-            const generatedBuffer =
-                Buffer.from(
-                    generatedSignature
-                );
-
-
-            if (
-                receivedBuffer.length !==
-                generatedBuffer.length ||
-                !crypto.timingSafeEqual(
-                    receivedBuffer,
-                    generatedBuffer
-                )
-            ) {
-
-                return res.status(400).json({
-
-                    message:
-                        "Payment verification failed"
-
-                });
-
-            }
-
-
-            // ==================================
-            // GET CART AGAIN
-            // ==================================
-
-            const [cartItems] =
-                await db.promise().query(
-                    `
-                    SELECT
-
-                        cart.product_id,
-
-                        cart.quantity,
-
-                        products.price
-
-                    FROM cart
-
-                    JOIN products
-                        ON cart.product_id =
-                           products.id
-
-                    WHERE cart.user_id = ?
-                    `,
-                    [userId]
-                );
-
-
-            if (
-                cartItems.length === 0
-            ) {
-
-                return res.status(400).json({
-
-                    message:
-                        "Cart is empty"
-
-                });
-
-            }
-
-
-            // ==================================
-            // VERIFY TOTAL AGAIN
-            // ==================================
-
-            let totalAmount = 0;
-
-
-            cartItems.forEach(
-                function (item) {
-
-                    totalAmount +=
-                        Number(
-                            item.price
-                        ) *
-                        Number(
-                            item.quantity
-                        );
-
-                }
-            );
-
-
-            // ==================================
-            // CHECK STORED AMOUNT
-            // ==================================
-
-            if (
-                Number(
-                    order.total_amount
-                ) !==
-                Number(
-                    totalAmount
-                )
-            ) {
-
-                return res.status(400).json({
-
-                    message:
-                        "Order amount mismatch"
-
-                });
-
-            }
-
-
-            // ==================================
-            // CREATE ORDER ITEMS
-            // ==================================
-
-            const orderItems =
-                cartItems.map(
-                    function (item) {
-
-                        return [
-
-                            order.id,
-
-                            item.product_id,
-
-                            item.quantity,
-
-                            item.price
-
-                        ];
-
-                    }
-                );
-
-
-            await db.promise().query(
-                `
-                INSERT INTO order_items
-                (
-                    order_id,
-                    product_id,
-                    quantity,
-                    price
-                )
-
-                VALUES ?
-                `,
-                [orderItems]
-            );
-
-
-            // ==================================
-            // UPDATE ORDER
-            // ==================================
-
-            await db.promise().query(
-                `
-                UPDATE orders
-
-                SET
-
-                    status = 'PLACED',
-
-                    payment_status = 'PAID',
-
-                    payment_method = ?,
-
-                    razorpay_payment_id = ?
-
-                WHERE id = ?
-
-                AND user_id = ?
-                `,
-                [
-
-                    payment_method,
-
-                    razorpay_payment_id,
-
-                    order.id,
-
-                    userId
-
-                ]
-            );
-
-
-            // ==================================
-            // CLEAR CART
-            // ==================================
-
-            await db.promise().query(
-                `
-                DELETE FROM cart
-
-                WHERE user_id = ?
-                `,
-                [userId]
-            );
-
-
-            // ==================================
-            // SUCCESS
-            // ==================================
-
-            res.json({
-
-                message:
-                    "Payment verified and order placed successfully",
-
-                orderId:
-                    order.id,
-
-                paymentId:
-                    razorpay_payment_id
-
-            });
-
-
-        } catch (error) {
-
-            console.log(
-                "Payment verification error:",
-                error
-            );
-
-
-            res.status(500).json({
-
-                message:
-                    "Unable to verify payment"
-
-            });
-
-        }
-
-    }
-);
 // ==========================================
 // PAYMENT - VERIFY RAZORPAY PAYMENT
 // ==========================================

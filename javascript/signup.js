@@ -112,7 +112,7 @@ signupForm.addEventListener(
 
             const response =
                 await fetch(
-                    "https://flipkart-clone-91e6.onrender.com/api/auth/register",
+                     "http://localhost:5001/api/auth/register",
                     {
 
                         method: "POST",
